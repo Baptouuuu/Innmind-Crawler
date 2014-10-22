@@ -1,0 +1,4 @@
+innmind_crawler:
+    resource: "@InnmindCrawlerBundle/Resources/config/routing.yml"
+    prefix:   /
+
