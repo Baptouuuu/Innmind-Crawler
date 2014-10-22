@@ -1,0 +1,14 @@
+Innmind\CrawlerBundle\Entity\Resource:
+    properties:
+        uri:
+            - Url: ~
+        port:
+            - Type:
+                type: integer
+
+Innmind\CrawlerBundle\Entity\HtmlPage:
+    properties:
+        canonical:
+            - Url: ~
+        rss:
+            - Url: ~
