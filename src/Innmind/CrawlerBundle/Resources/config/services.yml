@@ -1,4 +1,7 @@
 services:
-#    innmind_crawler.example:
-#        class: Innmind\CrawlerBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
+    crawler:
+        class: Innmind\CrawlerBundle\Crawler
+        arguments: ['@event_dispatcher', '@resource_factory', '@validator']
+
+    resource_factory:
+        class: Innmind\CrawlerBundle\ResourceFactory
