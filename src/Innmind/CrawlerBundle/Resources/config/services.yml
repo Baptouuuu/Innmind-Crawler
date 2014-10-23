@@ -1,7 +1,11 @@
 services:
     crawler:
         class: Innmind\CrawlerBundle\Crawler
-        arguments: ['@event_dispatcher', '@resource_factory', '@validator']
+        calls:
+            - ['setDispatcher', ['@event_dispatcher']]
+            - ['setResourceFactory', ['@resource_factory']]
+            - ['setValidator', ['@validator']]
+            - ['setLogger', ['@logger']]
 
     resource_factory:
         class: Innmind\CrawlerBundle\ResourceFactory
