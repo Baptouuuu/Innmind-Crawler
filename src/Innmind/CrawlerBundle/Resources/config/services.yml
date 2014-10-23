@@ -14,3 +14,15 @@ services:
         class: Pdp\Parser
         factory_class: Innmind\CrawlerBundle\DomainParserFactory
         facotry_method: make
+
+    parser.title_pass:
+        class: Innmind\CrawlerBundle\Parser\TitlePass
+        tags:
+            - { name: kernel.event_listener, event: resource.crawled, method: handle }
+
+    parser.uri_pass:
+        class: Innmind\CrawlerBundle\Parser\UriPass
+        calls:
+            - ['setDomainParser', ['@domain_parser']]
+        tags:
+            - { name: kernel.event_listener, event: resource.crawled, method: handle }
