@@ -19,7 +19,7 @@ class WebAppPass
         $link = $dom->filter('link[rel="manifest"][href]');
 
         if ($link->count() === 1) {
-            $resource->setWebApp();
+            $resource->setHasWebApp();
         }
     }
 }

@@ -50,9 +50,9 @@ class HtmlPageTest extends \PHPUnit_Framework_TestCase
     {
         $p = new HtmlPage();
 
-        $this->assertEquals($p->isWebApp(), false);
-        $this->assertEquals($p->setWebApp(), $p);
-        $this->assertEquals($p->isWebApp(), true);
+        $this->assertEquals($p->hasWebApp(), false);
+        $this->assertEquals($p->setHasWebApp(), $p);
+        $this->assertEquals($p->hasWebApp(), true);
     }
 
     public function testSetTitle()

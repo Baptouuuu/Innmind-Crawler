@@ -36,7 +36,7 @@ class WebAppPassTest extends \PHPUnit_Framework_TestCase
 
         $this->pass->handle($event);
 
-        $this->assertEquals($event->getResource()->isWebApp(), false);
+        $this->assertEquals($event->getResource()->hasWebApp(), false);
     }
 
     public function testSetWebApp()
@@ -47,6 +47,6 @@ class WebAppPassTest extends \PHPUnit_Framework_TestCase
 
         $this->pass->handle($event);
 
-        $this->assertEquals($event->getResource()->isWebApp(), true);
+        $this->assertEquals($event->getResource()->hasWebApp(), true);
     }
 }

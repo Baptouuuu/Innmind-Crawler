@@ -89,14 +89,14 @@ class HtmlPage extends Resource
         return $this->canonical;
     }
 
-    public function setWebApp()
+    public function setHasWebApp()
     {
         $this->webapp = true;
 
         return $this;
     }
 
-    public function isWebApp()
+    public function hasWebApp()
     {
         return $this->webapp;
     }
