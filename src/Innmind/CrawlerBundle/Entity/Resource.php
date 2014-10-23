@@ -104,7 +104,7 @@ class Resource
 
     public function setURL($url)
     {
-        $this->url = (string) $url;
+        $this->url = $url ? (string) $url : '/';
 
         return $this;
     }
