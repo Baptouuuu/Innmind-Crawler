@@ -26,3 +26,8 @@ services:
             - ['setDomainParser', ['@domain_parser']]
         tags:
             - { name: kernel.event_listener, event: resource.crawled, method: handle }
+
+    parser.web_app_pass:
+        class: Innmind\CrawlerBundle\Parser\WebAppPass
+        tags:
+            - { name: kernel.event_listener, event: resource.crawled, method: handle }
