@@ -17,7 +17,7 @@ class Resource
     protected $port;
     protected $url = '/';
     protected $query;
-    protected $hash;
+    protected $fragment;
     protected $headers;
 
     public function __construct()
@@ -131,21 +131,21 @@ class Resource
         return $this->query;
     }
 
-    public function setHash($hash)
+    public function setFragment($fragment)
     {
-        $this->hash = (string) $hash;
+        $this->fragment = (string) $fragment;
 
         return $this;
     }
 
-    public function hasHash()
+    public function hasFragment()
     {
-        return (bool) $this->hash;
+        return (bool) $this->fragment;
     }
 
-    public function getHash()
+    public function getFragment()
     {
-        return $this->hash;
+        return $this->fragment;
     }
 
     public function addHeader($key, $value)

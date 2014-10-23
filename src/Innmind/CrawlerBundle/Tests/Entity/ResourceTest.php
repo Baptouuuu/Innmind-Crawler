@@ -71,14 +71,14 @@ class ResourceTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($r->getURL(), '/foo/bar');
     }
 
-    public function testSetHash()
+    public function testSetFragment()
     {
         $r = new Resource();
 
-        $this->assertEquals($r->hasHash(), false);
-        $this->assertEquals($r->setHash('foo'), $r);
-        $this->assertEquals($r->hasHash(), true);
-        $this->assertEquals($r->getHash(), 'foo');
+        $this->assertEquals($r->hasFragment(), false);
+        $this->assertEquals($r->setFragment('foo'), $r);
+        $this->assertEquals($r->hasFragment(), true);
+        $this->assertEquals($r->getFragment(), 'foo');
     }
 
     public function testSetHeader()
