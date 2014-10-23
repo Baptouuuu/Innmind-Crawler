@@ -101,7 +101,7 @@ class HtmlPage extends Resource
 
     public function setTitle($title)
     {
-        $this->title = (string) $title;
+        $this->title = trim((string) $title);
 
         return $this;
     }
@@ -113,7 +113,7 @@ class HtmlPage extends Resource
 
     public function setContent($content)
     {
-        $this->content = $content;
+        $this->content = trim($content);
 
         return $this;
     }
