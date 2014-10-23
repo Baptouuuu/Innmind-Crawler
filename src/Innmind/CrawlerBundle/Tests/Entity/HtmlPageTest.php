@@ -12,7 +12,7 @@ class HtmlPageTest extends \PHPUnit_Framework_TestCase
         $p = new HtmlPage();
 
         $this->assertEquals($p->getAlternates()->count(), 0);
-        $this->assertEquals($p->addAlternate('http://localhost/en'), $p);
+        $this->assertEquals($p->addAlternate('en', 'http://localhost/en'), $p);
         $this->assertEquals($p->getAlternates()->count(), 1);
     }
 

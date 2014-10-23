@@ -26,9 +26,9 @@ class HtmlPage extends Resource
         $this->links = new ArrayCollection();
     }
 
-    public function addAlternate($uri)
+    public function addAlternate($lang, $uri)
     {
-        $this->alternates->add((string) $uri);
+        $this->alternates->set($lang, (string) $uri);
 
         return $this;
     }
