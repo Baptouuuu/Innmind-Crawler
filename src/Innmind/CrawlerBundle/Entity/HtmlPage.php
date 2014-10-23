@@ -20,6 +20,8 @@ class HtmlPage extends Resource
 
     public function __construct()
     {
+        parent::__construct();
+
         $this->alternates = new ArrayCollection();
         $this->links = new ArrayCollection();
     }
