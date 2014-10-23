@@ -13,7 +13,7 @@ class ResourceFactory
     public function make($contentType)
     {
         switch (true) {
-            case (bool) preg_match('/(text\html|application\/xhtml\+xml)/', strtolower($contentType)):
+            case (bool) preg_match('/(text\/html|application\/xhtml\+xml)/', strtolower($contentType)):
                 $resource = new HtmlPage();
                 break;
 
