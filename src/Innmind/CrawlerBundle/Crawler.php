@@ -65,6 +65,8 @@ class Crawler
 
         $resource = $this->factory->make($response->getHeader('Content-Type'));
 
+        $resource->setURI($request->getURI());
+
         $event = new ResourceEvent($resource, $response, $dom);
         $this->dispatcher->dispatch(
             ResourceEvents::CRAWLED,
