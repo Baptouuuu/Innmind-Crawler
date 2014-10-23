@@ -74,7 +74,7 @@ class Crawler
         $this->logger->info('Resource processed', ['uri' => $request->getURI()]);
         $errors = $this->validator->validate($resource);
 
-        if (count($errors) > 0) {
+        if ($errors->count() > 0) {
             $this->logger->critical('Resource processing resulted with errors', [
                 'uri' => $request->getURI(),
                 'errors' => $errors
