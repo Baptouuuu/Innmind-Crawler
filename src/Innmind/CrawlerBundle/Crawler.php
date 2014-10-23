@@ -46,6 +46,7 @@ class Crawler
 
     public function crawl(ResourceRequest $request)
     {
+        $this->logger->info('Crawling a resource', ['uri' => $request->getURI()]);
         $req = $this->client->createRequest('GET', $request->getURI());
 
         $request
@@ -57,6 +58,7 @@ class Crawler
         $req->addHeader('User-Agent', 'Innmind Crawler');
 
         $response = $this->client->send($req);
+        $this->logger->info('Resoure crawled', ['uri' => $request->getURI()]);
 
         $dom = new DomCrawler();
         $dom->addContent((string) $response->getBody());
@@ -69,9 +71,14 @@ class Crawler
             $event
         );
 
+        $this->logger->info('Resource processed', ['uri' => $request->getURI()]);
         $errors = $this->validator->validate($resource);
 
         if (count($errors) > 0) {
+            $this->logger->critical('Resource processing resulted with errors', [
+                'uri' => $request->getURI(),
+                'errors' => $errors
+            ]);
             throw new RuntimeException('Invalid resource');
         }
 
@@ -79,6 +86,7 @@ class Crawler
             ResourceEvents::PROCESSED,
             $event
         );
+        $this->logger->info('Resource fully processed', ['uri' => $request->getURI()]);
 
         return $resource;
     }
