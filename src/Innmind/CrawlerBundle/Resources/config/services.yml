@@ -9,3 +9,8 @@ services:
 
     resource_factory:
         class: Innmind\CrawlerBundle\ResourceFactory
+
+    domain_parser:
+        class: Pdp\Parser
+        factory_class: Innmind\CrawlerBundle\DomainParserFactory
+        facotry_method: make
