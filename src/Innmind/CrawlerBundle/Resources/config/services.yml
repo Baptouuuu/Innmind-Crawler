@@ -13,7 +13,7 @@ services:
     domain_parser:
         class: Pdp\Parser
         factory_class: Innmind\CrawlerBundle\DomainParserFactory
-        facotry_method: make
+        factory_method: make
 
     parser.title_pass:
         class: Innmind\CrawlerBundle\Parser\TitlePass
