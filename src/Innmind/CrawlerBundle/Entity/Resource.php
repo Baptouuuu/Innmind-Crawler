@@ -150,6 +150,8 @@ class Resource
 
     public function addHeader($key, $value)
     {
+        $value = is_array($value) && count($value) === 1 ? $value[0] : $value;
+
         $this->headers->set($key, $value);
 
         return $this;
