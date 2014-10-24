@@ -31,3 +31,8 @@ services:
         class: Innmind\CrawlerBundle\Parser\WebAppPass
         tags:
             - { name: kernel.event_listener, event: resource.crawled, method: handle }
+
+    parser.alternates_pass:
+        class: Innmind\CrawlerBundle\Parser\AlternatesPass
+        tags:
+            - { name: kernel.event_listener, event: resource.crawled, method: handle }
