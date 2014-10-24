@@ -48,3 +48,10 @@ services:
             - ['setValidator', ['@validator']]
         tags:
             - { name: kernel.event_listener, event: resource.crawled, method: handle }
+
+    parser.links_pass:
+        class: Innmind\CrawlerBundle\Parser\LinksPass
+        calls:
+            - ['setValidator', ['@validator']]
+        tags:
+            - { name: kernel.event_listener, event: resource.crawled, method: handle }
