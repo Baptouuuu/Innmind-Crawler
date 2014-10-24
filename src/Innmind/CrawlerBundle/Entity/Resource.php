@@ -103,6 +103,25 @@ class Resource
         return $this->port;
     }
 
+    /**
+     * If the port is 80 on http sheme or 443 on https scheme
+     * the port can be omitted from the url
+     *
+     * @return bool
+     */
+
+    public function hasOptionalPort()
+    {
+        if (
+            ($this->scheme === 'http' && $this->port === 80) ||
+            ($this->scheme === 'https' && $this->port === 443)
+        ) {
+            return true;
+        }
+
+        return false;
+    }
+
     public function setPath($path)
     {
         $this->path = $path ? (string) $path : '/';
