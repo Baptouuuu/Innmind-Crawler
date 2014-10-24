@@ -114,7 +114,8 @@ class Resource
     {
         if (
             ($this->scheme === 'http' && $this->port === 80) ||
-            ($this->scheme === 'https' && $this->port === 443)
+            ($this->scheme === 'https' && $this->port === 443) ||
+            !$this->hasPort()
         ) {
             return true;
         }

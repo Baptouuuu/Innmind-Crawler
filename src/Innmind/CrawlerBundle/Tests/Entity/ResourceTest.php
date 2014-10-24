@@ -63,6 +63,35 @@ class ResourceTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($r->getPort(), 80);
     }
 
+    public function testHasOptionalPort()
+    {
+        $r = new Resource;
+
+        $this->assertTrue($r->hasOptionalPort());
+
+        $r->setPort('');
+
+        $this->assertTrue($r->hasOptionalPort());
+
+        $r
+            ->setScheme('http')
+            ->setPort('80');
+
+        $this->assertTrue($r->hasOptionalPort());
+
+        $r
+            ->setScheme('https')
+            ->setPort('443');
+
+        $this->assertTrue($r->hasOptionalPort());
+
+        $r
+            ->setScheme('http')
+            ->setPort('8080');
+
+        $this->assertFalse($r->hasOptionalPort());
+    }
+
     public function testSetPath()
     {
         $r = new Resource();
