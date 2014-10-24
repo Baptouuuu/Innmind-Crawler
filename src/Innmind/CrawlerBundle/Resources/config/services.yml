@@ -67,3 +67,10 @@ services:
             - ['setValidator', ['@validator']]
         tags:
             - { name: kernel.event_listener, event: resource.crawled, method: handle }
+
+    parser.charset_pass:
+        class: Innmind\CrawlerBundle\Parser\CharsetPass
+        calls:
+            - ['setValidator', ['@validator']]
+        tags:
+            - { name: kernel.event_listener, event: resource.crawled, method: handle }

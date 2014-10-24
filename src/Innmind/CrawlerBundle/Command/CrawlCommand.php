@@ -73,6 +73,10 @@ class CrawlCommand extends ContainerAwareCommand
                 ));
                 return true;
             });
+        $output->writeln(sprintf(
+            'Charset: <fg=cyan>%s</fg=cyan>',
+            $resource->getCharset()
+        ));
 
         if ($resource instanceof HtmlPage) {
             $output->writeln(sprintf(
