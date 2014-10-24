@@ -36,3 +36,8 @@ services:
         class: Innmind\CrawlerBundle\Parser\AlternatesPass
         tags:
             - { name: kernel.event_listener, event: resource.crawled, method: handle }
+
+    parser.author_pass:
+        class: Innmind\CrawlerBundle\Parser\AuthorPass
+        tags:
+            - { name: kernel.event_listener, event: resource.crawled, method: handle }
