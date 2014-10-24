@@ -41,3 +41,10 @@ services:
         class: Innmind\CrawlerBundle\Parser\AuthorPass
         tags:
             - { name: kernel.event_listener, event: resource.crawled, method: handle }
+
+    parser.canonical_pass:
+        class: Innmind\CrawlerBundle\Parser\CanonicalPass
+        calls:
+            - ['setValidator', ['@validator']]
+        tags:
+            - { name: kernel.event_listener, event: resource.crawled, method: handle }
