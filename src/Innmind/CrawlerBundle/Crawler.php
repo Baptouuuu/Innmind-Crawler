@@ -66,6 +66,7 @@ class Crawler
         $resource = $this->factory->make($response->getHeader('Content-Type'));
 
         $resource->setURI($request->getURI());
+        $resource->setStatusCode($response->getStatusCode());
 
         $event = new ResourceEvent($resource, $response, $dom);
         $this->dispatcher->dispatch(
@@ -73,7 +74,10 @@ class Crawler
             $event
         );
 
-        $this->logger->info('Resource processed', ['uri' => $request->getURI()]);
+        $this->logger->info('Resource processed', [
+            'uri' => $request->getURI(),
+            'statusCode' => $resource->getStatusCode()
+        ]);
         $errors = $this->validator->validate($resource);
 
         if ($errors->count() > 0) {

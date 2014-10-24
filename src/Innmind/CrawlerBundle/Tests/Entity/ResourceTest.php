@@ -91,4 +91,13 @@ class ResourceTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($r->getHeader('Content-Type'), 'text/plain');
         $this->assertEquals($r->getHeaders() instanceof ArrayCollection, true);
     }
+
+    public function testSetStatusCode()
+    {
+        $r = new Resource();
+
+        $this->assertEquals($r->getStatusCode(), null);
+        $this->assertEquals($r->setStatusCode('200'), $r);
+        $this->assertEquals($r->getStatusCode(), 200);
+    }
 }

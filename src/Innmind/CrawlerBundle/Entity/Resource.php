@@ -19,6 +19,7 @@ class Resource
     protected $query;
     protected $fragment;
     protected $headers;
+    protected $statusCode;
 
     public function __construct()
     {
@@ -170,5 +171,17 @@ class Resource
     public function getHeaders()
     {
         return $this->headers;
+    }
+
+    public function setStatusCode($code)
+    {
+        $this->statusCode = (int) $code;
+
+        return $this;
+    }
+
+    public function getStatusCode()
+    {
+        return $this->statusCode;
     }
 }
