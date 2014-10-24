@@ -95,7 +95,7 @@ class Resource
 
     public function hasPort()
     {
-        return is_int($this->port);
+        return is_int($this->port) && !empty($this->port);
     }
 
     public function getPort()
