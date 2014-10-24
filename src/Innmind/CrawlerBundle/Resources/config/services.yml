@@ -60,3 +60,10 @@ services:
         class: Innmind\CrawlerBundle\Parser\LanguagePass
         tags:
             - { name: kernel.event_listener, event: resource.crawled, method: handle }
+
+    parser.rss_pass:
+        class: Innmind\CrawlerBundle\Parser\RssPass
+        calls:
+            - ['setValidator', ['@validator']]
+        tags:
+            - { name: kernel.event_listener, event: resource.crawled, method: handle }
