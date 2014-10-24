@@ -40,7 +40,7 @@ class CanonicalPass
                 $url .= $resource->getScheme();
                 $url .= '://';
                 $url .= $resource->getHost();
-                $url .= $resource->getPort() !== 80 ? ':' . (string) $resource->getPort() : '';
+                $url .= !$resource->hasOptionalPort() ? ':' . (string) $resource->getPort() : '';
                 $url .= $canonical;
             } else {
                 $url = $canonical;
