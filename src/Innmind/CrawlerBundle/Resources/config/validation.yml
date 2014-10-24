@@ -12,3 +12,5 @@ Innmind\CrawlerBundle\Entity\HtmlPage:
             - Url: ~
         rss:
             - Url: ~
+        charset:
+            - Regex: '/[a-zA-Z\-\d]+/'

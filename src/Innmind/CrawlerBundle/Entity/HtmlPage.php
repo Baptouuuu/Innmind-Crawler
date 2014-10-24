@@ -17,6 +17,7 @@ class HtmlPage extends Resource
     protected $links;
     protected $language;
     protected $rss;
+    protected $charset;
 
     public function __construct()
     {
@@ -164,5 +165,17 @@ class HtmlPage extends Resource
     public function getRSS()
     {
         return $this->rss;
+    }
+
+    public function setCharset($charset)
+    {
+        $this->charset = $charset;
+
+        return $this;
+    }
+
+    public function getCharset()
+    {
+        return $this->charset;
     }
 }

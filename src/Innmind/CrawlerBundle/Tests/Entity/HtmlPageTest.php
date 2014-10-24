@@ -100,4 +100,13 @@ class HtmlPageTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($p->hasRSS(), true);
         $this->assertEquals($p->getRSS(), 'http://localhost/rss');
     }
+
+    public function testSetCharset()
+    {
+        $p = new HtmlPage();
+
+        $this->assertEquals($p->getCharset(), null);
+        $this->assertEquals($p->setCharset('UTF-8'), $p);
+        $this->assertEquals($p->getCharset(), 'UTF-8');
+    }
 }
