@@ -8,6 +8,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Innmind\CrawlerBundle\ResourceRequest;
+use Innmind\CrawlerBundle\Entity\HtmlPage;
 
 class CrawlCommand extends ContainerAwareCommand
 {
@@ -56,5 +57,71 @@ class CrawlCommand extends ContainerAwareCommand
         }
 
         $resource = $crawler->crawl($request);
+
+        $output->writeln(sprintf(
+            'URI: <fg=cyan>%s</fg=cyan>',
+            $resource->getURI()
+        ));
+
+        $resource
+            ->getHeaders()
+            ->forAll(function ($key, $value) use ($output) {
+                $output->writeln(sprintf(
+                    'Header: <fg=cyan>%s: %s</fg=cyan>',
+                    $key,
+                    is_array($value) ? implode(', ', $value) : $value
+                ));
+                return true;
+            });
+
+        if ($resource instanceof HtmlPage) {
+            $output->writeln(sprintf(
+                'Title: <fg=cyan>%s</fg=cyan>',
+                $resource->getTitle()
+            ));
+            $output->writeln(sprintf(
+                'Author: <fg=cyan>%s</fg=cyan>',
+                $resource->getAuthor()
+            ));
+            $output->writeln(sprintf(
+                'Language: <fg=cyan>%s</fg=cyan>',
+                $resource->getLanguage()
+            ));
+            $output->writeln(sprintf(
+                'Description: <fg=cyan>%s</fg=cyan>',
+                $resource->getDescription()
+            ));
+            $output->writeln(sprintf(
+                'Canonical: <fg=cyan>%s</fg=cyan>',
+                $resource->getCanonical()
+            ));
+            $output->writeln(sprintf(
+                'RSS: <fg=cyan>%s</fg=cyan>',
+                $resource->getRSS()
+            ));
+            $resource
+                ->getAlternates()
+                ->forAll(function ($lang, $url) use ($output) {
+                    $output->writeln(sprintf(
+                        'Alternate: <fg=cyan>%s: %s</fg=cyan>',
+                        $lang,
+                        $url
+                    ));
+                    return true;
+                });
+            $output->writeln(sprintf(
+                'Has a webapp: <fg=cyan>%s</fg=cyan>',
+                $resource->hasWebApp() ? 'true' : 'false'
+            ));
+            $resource
+                ->getLinks()
+                ->forAll(function ($key, $url) use ($output) {
+                    $output->writeln(sprintf(
+                        'Link: <fg=cyan>%s</fg=cyan>',
+                        $url
+                    ));
+                    return true;
+                });
+        }
     }
 }
