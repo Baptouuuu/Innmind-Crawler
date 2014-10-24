@@ -25,7 +25,7 @@ services:
         calls:
             - ['setDomainParser', ['@domain_parser']]
         tags:
-            - { name: kernel.event_listener, event: resource.crawled, method: handle }
+            - { name: kernel.event_listener, event: resource.crawled, method: handle, priority: 255 }
 
     parser.web_app_pass:
         class: Innmind\CrawlerBundle\Parser\WebAppPass
