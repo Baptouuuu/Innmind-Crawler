@@ -140,7 +140,7 @@ class HtmlPage extends Resource
 
     public function setLanguage($language)
     {
-        $this->language = $language;
+        $this->language = trim($language);
 
         return $this;
     }
