@@ -75,7 +75,7 @@ class UriPassTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($resource->getPort(), 8080);
     }
 
-    public function testSetUrl()
+    public function testSetPath()
     {
         $resource = new Resource();
         $resource->setURI('https://www.innmind.io');
@@ -83,13 +83,13 @@ class UriPassTest extends \PHPUnit_Framework_TestCase
 
         $this->pass->handle($event);
 
-        $this->assertEquals($resource->getUrl(), '/');
+        $this->assertEquals($resource->getPath(), '/');
 
         $resource->setURI('https://www.innmind.io/foo/bar');
 
         $this->pass->handle($event);
 
-        $this->assertEquals($resource->getUrl(), '/foo/bar');
+        $this->assertEquals($resource->getPath(), '/foo/bar');
     }
 
     public function testSetQuery()

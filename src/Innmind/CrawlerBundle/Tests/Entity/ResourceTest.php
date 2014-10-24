@@ -62,13 +62,13 @@ class ResourceTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($r->getPort(), 80);
     }
 
-    public function testSetURL()
+    public function testSetPath()
     {
         $r = new Resource();
 
-        $this->assertEquals($r->getURL(), '/');
-        $this->assertEquals($r->setURL('/foo/bar'), $r);
-        $this->assertEquals($r->getURL(), '/foo/bar');
+        $this->assertEquals($r->getPath(), '/');
+        $this->assertEquals($r->setPath('/foo/bar'), $r);
+        $this->assertEquals($r->getPath(), '/foo/bar');
     }
 
     public function testSetFragment()

@@ -29,7 +29,7 @@ class UriPass
             ->setDomain($url->host->registerableDomain)
             ->setTopLevelDomain($url->host->publicSuffix)
             ->setPort($url->port)
-            ->setUrl($url->path)
+            ->setPath($url->path)
             ->setQuery($url->query)
             ->setFragment($url->fragment);
 

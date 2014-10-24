@@ -15,7 +15,7 @@ class Resource
     protected $domain;
     protected $tld;
     protected $port;
-    protected $url = '/';
+    protected $path = '/';
     protected $query;
     protected $fragment;
     protected $headers;
@@ -102,16 +102,16 @@ class Resource
         return $this->port;
     }
 
-    public function setURL($url)
+    public function setPath($path)
     {
-        $this->url = $url ? (string) $url : '/';
+        $this->path = $path ? (string) $path : '/';
 
         return $this;
     }
 
-    public function getURL()
+    public function getPath()
     {
-        return $this->url;
+        return $this->path;
     }
 
     public function setQuery($query)
