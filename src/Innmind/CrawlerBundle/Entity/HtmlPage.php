@@ -58,6 +58,7 @@ class HtmlPage extends Resource
 
     public function setDescription($desc)
     {
+        $desc = str_replace("\n", '', $desc);
         $this->description = (string) $desc;
 
         return $this;
@@ -104,6 +105,7 @@ class HtmlPage extends Resource
 
     public function setTitle($title)
     {
+        $title = str_replace("\n", '', $title);
         $this->title = trim((string) $title);
 
         return $this;
