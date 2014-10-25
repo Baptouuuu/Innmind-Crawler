@@ -74,3 +74,8 @@ services:
             - ['setValidator', ['@validator']]
         tags:
             - { name: kernel.event_listener, event: resource.crawled, method: handle }
+
+    parser.content_pass:
+        class: Innmind\CrawlerBundle\Parser\ContentPass
+        tags:
+            - { name: kernel.event_listener, event: resource.crawled, method: handle }
