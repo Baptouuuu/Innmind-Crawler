@@ -58,7 +58,6 @@ class DescriptionPassTest extends \PHPUnit_Framework_TestCase
 
         $this->pass->handle($event);
 
-        $this->assertEquals($event->getResource()->getDescription(), 'This project is an attempt to build a search engine that helps you discover new things.
-    The prime goal is to offer results based on your search, b...');
+        $this->assertEquals($event->getResource()->getDescription(), 'This project is an attempt to build a search engine that helps you discover new things.    The prime goal is to offer results based on your search, b...');
     }
 }
