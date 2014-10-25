@@ -28,8 +28,6 @@ class LinksPass
             return;
         }
 
-        $validator = $this->validator;
-
         $event
             ->getDOM()
             ->filter('
@@ -39,22 +37,22 @@ class LinksPass
                 link[rel="previous"][href],
                 link[rel="last"][href]
             ')
-            ->each(function ($node) use ($resource, $validator) {
+            ->each(function ($node) use ($resource) {
                 $href = $node->attr('href');
                 $fragmentConstraint = new Regex(['pattern' => '/^#.*$/']);
                 $pathConstraint = new Regex(['pattern' => '/^\/.*$/']);
 
-                if ($validator->validate($href, $fragmentConstraint)->count() === 0) {
+                if ($this->validator->validate($href, $fragmentConstraint)->count() === 0) {
                     $link = $resource->getScheme() . '://' . $resource->getHost();
                     $link .= !$resource->hasOptionalPort() ? ':' . (string) $resource->getPort() : '';
                     $link .= $resource->getPath() . '?' . $resource->getQuery();
                     $link .= $href;
-                } else if ($validator->validate($href, $pathConstraint)->count() === 0) {
+                } else if ($this->validator->validate($href, $pathConstraint)->count() === 0) {
                     $link = $resource->getScheme() . '://' . $resource->getHost();
                     $link .= !$resource->hasOptionalPort() ? ':' . (string) $resource->getPort() : '';
                     $link .= $href;
                 } else if (
-                    $validator->validate($href, new Url())->count() > 0 &&
+                    $this->validator->validate($href, new Url())->count() > 0 &&
                     substr($href, 0, 1) !== '/'
                 ) {
                     $link = $resource->getScheme() . '://' . $resource->getHost();
