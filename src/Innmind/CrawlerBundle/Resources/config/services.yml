@@ -78,4 +78,9 @@ services:
     parser.content_pass:
         class: Innmind\CrawlerBundle\Parser\ContentPass
         tags:
+            - { name: kernel.event_listener, event: resource.crawled, method: handle, priority: 10 }
+
+    parser.description_pass:
+        class: Innmind\CrawlerBundle\Parser\DescriptionPass
+        tags:
             - { name: kernel.event_listener, event: resource.crawled, method: handle }
