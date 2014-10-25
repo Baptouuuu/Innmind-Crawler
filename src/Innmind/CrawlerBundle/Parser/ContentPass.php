@@ -26,6 +26,34 @@ class ContentPass
         }
 
         $dom = $event->getDOM();
+        $article = $dom->filter('[role="article"]');
+
+        if ($article->count() === 1) {
+            $resource->setContent($article->text());
+            return;
+        }
+
+        $document = $dom->filter('[role="document"]');
+
+        if ($document->count() === 1) {
+            $resource->setContent($document->text());
+            return;
+        }
+
+        $main = $dom->filter('[role="main"]');
+
+        if ($main->count() === 1) {
+            $resource->setContent($main->text());
+            return;
+        }
+
+        $article = $dom->filter('article');
+
+        if ($article->count() === 1) {
+            $resource->setContent($article->text());
+            return;
+        }
+
         $body = $dom->filter('body');
 
         $this->totalWords = str_word_count($body->text());
