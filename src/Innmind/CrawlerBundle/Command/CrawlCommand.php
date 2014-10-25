@@ -58,6 +58,10 @@ class CrawlCommand extends ContainerAwareCommand
 
         $resource = $crawler->crawl($request);
 
+        if ($output->getVerbosity() === OutputInterface::VERBOSITY_QUIET) {
+            return;
+        }
+
         $output->writeln(sprintf(
             'URI: <fg=cyan>%s</fg=cyan>',
             $resource->getURI()
