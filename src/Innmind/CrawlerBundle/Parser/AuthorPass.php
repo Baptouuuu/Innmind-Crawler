@@ -10,6 +10,12 @@ use Innmind\CrawlerBundle\Entity\HtmlPage;
  */
 class AuthorPass
 {
+    /**
+     * Process the crawled resource
+     *
+     * @param ResourceEvent $event
+     */
+
     public function handle(ResourceEvent $event)
     {
         $resource = $event->getResource();

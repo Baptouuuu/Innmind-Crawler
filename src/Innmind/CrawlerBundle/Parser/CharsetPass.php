@@ -14,10 +14,22 @@ class CharsetPass
 {
     protected $validator;
 
+    /**
+     * Set the validator
+     *
+     * @param ValidatorInterface validator
+     */
+
     public function setValidator(ValidatorInterface $validator)
     {
         $this->validator = $validator;
     }
+
+    /**
+     * Process the crawled resource
+     *
+     * @param ResourceEvent $event
+     */
 
     public function handle(ResourceEvent $event)
     {

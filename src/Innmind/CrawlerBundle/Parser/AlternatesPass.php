@@ -24,6 +24,12 @@ class AlternatesPass
         $this->resolver = $resolver;
     }
 
+    /**
+     * Process the crawled resource
+     *
+     * @param ResourceEvent $event
+     */
+
     public function handle(ResourceEvent $event)
     {
         $resource = $event->getResource();

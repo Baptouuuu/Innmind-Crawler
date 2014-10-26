@@ -17,6 +17,12 @@ class ContentPass
     protected $growth = [];
     protected $totalWords = 0;
 
+    /**
+     * Process the crawled resource
+     *
+     * @param ResourceEvent $event
+     */
+
     public function handle(ResourceEvent $event)
     {
         $resource = $event->getResource();
@@ -172,6 +178,15 @@ class ContentPass
 
         return $bestPath;
     }
+
+    /**
+     * Extract the dom crawler for the given XPath
+     *
+     * @param Crawler $dom
+     * @param string $path XPath
+     *
+     * @return Crawler
+     */
 
     protected function resolveBestElement(Crawler $dom, $path)
     {

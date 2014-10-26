@@ -8,6 +8,7 @@ use Innmind\CrawlerBundle\Entity\Resource;
 /**
  * Build appropriate resource entity based on a content type
  */
+
 class ResourceFactory
 {
     public function make($contentType)

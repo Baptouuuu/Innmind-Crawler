@@ -11,6 +11,10 @@ use RuntimeException;
 use Innmind\CrawlerBundle\Event\ResourceEvent;
 use Innmind\CrawlerBundle\Event\ResourceEvents;
 
+/**
+ * Retrieve a resource and tell the app to process it
+ */
+
 class Crawler
 {
     protected $client;
@@ -24,25 +28,57 @@ class Crawler
         $this->client = new Client();
     }
 
+    /**
+     * Set the vent dispatcher
+     *
+     * @param EventDispatcherInterface $dispatcher
+     */
+
     public function setDispatcher(EventDispatcherInterface $dispatcher)
     {
         $this->dispatcher = $dispatcher;
     }
+
+    /**
+     * Set the resourcce factory
+     *
+     * @param ResourceFactory $factory
+     */
 
     public function setResourceFactory(ResourceFactory $factory)
     {
         $this->factory = $factory;
     }
 
+    /**
+     * Set the validator
+     *
+     * @param ValidatorInterface $validator
+     */
+
     public function setValidator(ValidatorInterface $validator)
     {
         $this->validator = $validator;
     }
 
+    /**
+     * Set the logger
+     *
+     * @param LoggerInterface $logger
+     */
+
     public function setLogger(LoggerInterface $logger)
     {
         $this->logger = $logger;
     }
+
+    /**
+     * Crawl the requested URI and tell the app to process it
+     *
+     * @param ResourceRequest $request
+     *
+     * @return Resource
+     */
 
     public function crawl(ResourceRequest $request)
     {

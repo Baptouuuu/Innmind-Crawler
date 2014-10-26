@@ -11,6 +11,12 @@ use Innmind\CrawlerBundle\Entity\HtmlPage;
  */
 class DescriptionPass
 {
+    /**
+     * Process the crawled resource
+     *
+     * @param ResourceEvent $event
+     */
+
     public function handle(ResourceEvent $event)
     {
         $resource = $event->getResource();

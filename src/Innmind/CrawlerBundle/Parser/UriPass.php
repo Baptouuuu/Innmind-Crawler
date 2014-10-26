@@ -12,10 +12,22 @@ class UriPass
 {
     protected $parser;
 
+    /**
+     * Set the domain parser
+     *
+     * @param Parser $parser
+     */
+
     public function setDomainParser(Parser $parser)
     {
         $this->parser = $parser;
     }
+
+    /**
+     * Process the crawled resource
+     *
+     * @param ResourceEvent $event
+     */
 
     public function handle(ResourceEvent $event)
     {
