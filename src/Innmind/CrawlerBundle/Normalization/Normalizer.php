@@ -47,8 +47,9 @@ class Normalizer
     {
         $data = new DataSet;
 
-        $this->passes->forAll(function ($pass) use ($data, $resource) {
+        $this->passes->forAll(function ($idx, $pass) use ($data, $resource) {
             $pass->normalize($resource, $data);
+            return true;
         });
 
         return $data->getArray();
