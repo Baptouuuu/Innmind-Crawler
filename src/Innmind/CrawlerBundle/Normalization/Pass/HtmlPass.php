@@ -19,7 +19,11 @@ class HtmlPass implements NormalizationPassInterface
             return;
         }
 
-        $dataset->set('translations', $resource->getAlternates()->toArray());
+        $translations = $resource->getAlternates()->toArray();
+
+        if (!empty($translations)) {
+            $dataset->set('translations', $translations);
+        }
 
         if ($resource->hasAuthor()) {
             $dataset->set('author', $resource->getAuthor());
@@ -37,8 +41,13 @@ class HtmlPass implements NormalizationPassInterface
             ->set('webapp', $resource->hasWebApp())
             ->set('title', $resource->getTitle())
             ->set('content', $resource->getContent())
-            ->set('links', array_unique($resource->getLinks()->toArray()))
             ->set('language', $resource->getLanguage());
+
+        $links = array_unique($resource->getLinks()->toArray());
+
+        if (!empty($links)) {
+            $dataset->set('links', $links);
+        }
 
         if ($resource->hasRSS()) {
             $dataset->set('rss', $resource->getRSS());

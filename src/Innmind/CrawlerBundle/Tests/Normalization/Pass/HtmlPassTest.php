@@ -21,11 +21,8 @@ class HtmlPassTest extends \PHPUnit_Framework_TestCase
         $data = new DataSet;
 
         $page
-            ->addAlternate('fr', 'http://innmind.io/fr')
             ->setTitle('Innmind')
             ->setContent('new kind of search engine')
-            ->addLink('http://github.com/Baptouuuu/Innmind')
-            ->addLink('http://github.com/Baptouuuu/Innmind')
             ->setLanguage('en')
             ->setCharset('UTF-8');
 
@@ -33,16 +30,48 @@ class HtmlPassTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(
             [
-                'translations' => ['fr' => 'http://innmind.io/fr'],
                 'title' => 'Innmind',
                 'content' => 'new kind of search engine',
-                'links' => ['http://github.com/Baptouuuu/Innmind'],
                 'language' => 'en',
                 'charset' => 'UTF-8',
                 'journal' => false,
                 'webapp' => false
             ],
             $data->getArray()
+        );
+    }
+
+    public function testSetAlternate()
+    {
+        $page = new HtmlPage;
+        $data = new DataSet;
+
+        $page->addAlternate('fr', 'http://innmind.io/fr');
+
+        $this->pass->normalize($page, $data);
+
+        $this->assertTrue(isset($data->getArray()['translations']));
+        $this->assertEquals(
+            ['fr' => 'http://innmind.io/fr'],
+            $data->getArray()['translations']
+        );
+    }
+
+    public function testSetLinks()
+    {
+        $page = new HtmlPage;
+        $data = new DataSet;
+
+        $page
+            ->addLink('http://github.com/Baptouuuu/Innmind')
+            ->addLink('http://github.com/Baptouuuu/Innmind');
+
+        $this->pass->normalize($page, $data);
+
+        $this->assertTrue(isset($data->getArray()['links']));
+        $this->assertEquals(
+            ['http://github.com/Baptouuuu/Innmind'],
+            $data->getArray()['links']
         );
     }
 
