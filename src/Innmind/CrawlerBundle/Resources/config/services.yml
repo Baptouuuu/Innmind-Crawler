@@ -71,7 +71,7 @@ services:
     parser.rss_pass:
         class: Innmind\CrawlerBundle\Parser\RssPass
         calls:
-            - ['setValidator', ['@validator']]
+            - ['setUriResolver', ['@uri_resolver']]
         tags:
             - { name: kernel.event_listener, event: resource.crawled, method: handle }
 
