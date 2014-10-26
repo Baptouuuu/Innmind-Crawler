@@ -96,3 +96,8 @@ services:
         class: Innmind\CrawlerBundle\Parser\AndroidPass
         tags:
             - { name: kernel.event_listener, event: resource.crawled, method: handle }
+
+    parser.ios_pass:
+        class: Innmind\CrawlerBundle\Parser\IosPass
+        tags:
+            - { name: kernel.event_listener, event: resource.crawled, method: handle }
