@@ -20,6 +20,7 @@ class HtmlPage extends Resource
     protected $charset;
     protected $androidURI;
     protected $iosURI;
+    protected $journal = false;
 
     public function __construct()
     {
@@ -215,5 +216,17 @@ class HtmlPage extends Resource
     public function getIosURI()
     {
         return $this->iosURI;
+    }
+
+    public function setJournal()
+    {
+        $this->journal = true;
+
+        return $this;
+    }
+
+    public function isJournal()
+    {
+        return $this->journal;
     }
 }

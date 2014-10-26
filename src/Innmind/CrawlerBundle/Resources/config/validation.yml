@@ -17,3 +17,6 @@ Innmind\CrawlerBundle\Entity\HtmlPage:
         androidURI:
             - Url:
                 protocols: ['android-app']
+        journal:
+            - Type:
+                type: bool
