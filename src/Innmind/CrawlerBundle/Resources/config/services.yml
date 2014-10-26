@@ -52,7 +52,7 @@ services:
     parser.canonical_pass:
         class: Innmind\CrawlerBundle\Parser\CanonicalPass
         calls:
-            - ['setValidator', ['@validator']]
+            - ['setUriResolver', ['@uri_resolver']]
         tags:
             - { name: kernel.event_listener, event: resource.crawled, method: handle }
 
