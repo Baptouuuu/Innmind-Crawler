@@ -35,6 +35,20 @@ class CrawlCommand extends ContainerAwareCommand
                 InputOption::VALUE_OPTIONAL,
                 'Specify the wished content language',
                 null
+            )
+            ->addOption(
+                'publisher',
+                'p',
+                InputOption::VALUE_OPTIONAL,
+                'URI where to send a POST request with the processed resource',
+                null
+            )
+            ->addOption(
+                'token',
+                't',
+                InputOption::VALUE_OPTIONAL,
+                'Token to authentify the resource (required when publisher is set)',
+                null
             );
     }
 
@@ -54,6 +68,12 @@ class CrawlCommand extends ContainerAwareCommand
 
         if ($input->getOption('language')) {
             $request->addHeader('Accept-Language', $input->getOption('language'));
+        }
+
+        if ($input->getOption('publisher')) {
+            $request
+                ->setPublisherURI($input->getOption('publisher'))
+                ->setToken($input->getOption('token'));
         }
 
         $resource = $crawler->crawl($request);

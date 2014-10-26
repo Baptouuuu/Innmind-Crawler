@@ -32,4 +32,20 @@ class ResourceRequestTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($r->addHeaders(['Acept-Language' => 'fr-FR']), $r);
         $this->assertEquals($r->getHeaders()->count(), 1);
     }
+
+    public function testSetPublisherURI()
+    {
+        $r = new ResourceRequest();
+
+        $this->assertEquals($r, $r->setPublisherURI('foo'));
+        $this->assertEquals('foo', $r->getPublisherURI());
+    }
+
+    public function testSetToken()
+    {
+        $r = new ResourceRequest();
+
+        $this->assertEquals($r, $r->setToken('foo'));
+        $this->assertEquals('foo', $r->getToken());
+    }
 }

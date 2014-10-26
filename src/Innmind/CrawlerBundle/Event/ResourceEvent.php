@@ -16,6 +16,8 @@ class ResourceEvent extends Event
     protected $resource;
     protected $response;
     protected $dom;
+    protected $publisher;
+    protected $token;
 
     /**
      * Constructor
@@ -63,5 +65,57 @@ class ResourceEvent extends Event
     public function getDOM()
     {
         return $this->dom;
+    }
+
+    /**
+     * Set the URI where to publish the processed resource
+     *
+     * @param string $uri
+     *
+     * @return ResourceEvent self
+     */
+
+    public function setPublisherURI($uri)
+    {
+        $this->publisher = (string) $uri;
+
+        return $this;
+    }
+
+    /**
+     * Return the URI where to send processed resource
+     *
+     * @return string
+     */
+
+    public function getPublisherURI()
+    {
+        return $this->publisher;
+    }
+
+    /**
+     * Set a token used to authentify the resource
+     *
+     * @param string $token
+     *
+     * @return ResourceEvent self
+     */
+
+    public function setToken($token)
+    {
+        $this->token = (string) $token;
+
+        return $this;
+    }
+
+    /**
+     * Return the authentication token
+     *
+     * @return string
+     */
+
+    public function getToken()
+    {
+        return $this->token;
     }
 }

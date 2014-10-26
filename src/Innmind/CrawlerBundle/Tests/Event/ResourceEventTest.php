@@ -65,4 +65,20 @@ class ResourceEventTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($e->getDOM(), $c);
     }
+
+    public function testGetPublisherURI()
+    {
+        $e = new ResourceEvent(new Resource, new Response(200), new Crawler);
+        $e->setPublisherURI('foo');
+
+        $this->assertEquals('foo', $e->getPublisherURI());
+    }
+
+    public function testGetToken()
+    {
+        $e = new ResourceEvent(new Resource, new Response(200), new Crawler);
+        $e->setToken('foo');
+
+        $this->assertEquals('foo', $e->getToken());
+    }
 }

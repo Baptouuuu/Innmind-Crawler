@@ -25,6 +25,20 @@ class ResourceRequest
 
     protected $headers;
 
+    /**
+     * URI where to publish the content
+     * @var string
+     */
+
+    protected $publisher;
+
+    /**
+     * Authentication associated to the resource
+     * @var string
+     */
+
+    protected $token;
+
     public function __construct()
     {
         $this->headers = new ArrayCollection();
@@ -98,5 +112,57 @@ class ResourceRequest
     public function getHeaders()
     {
         return $this->headers;
+    }
+
+    /**
+     * Set the URI where to publish the resource
+     *
+     * @param string $uri
+     *
+     * @return ResourceRequest self
+     */
+
+    public function setPublisherURI($uri)
+    {
+        $this->publisher = (string) $uri;
+
+        return $this;
+    }
+
+    /**
+     * Return the URI where to publish the resource
+     *
+     * @return string
+     */
+
+    public function getPublisherURI()
+    {
+        return $this->publisher;
+    }
+
+    /**
+     * Set the authentication token
+     *
+     * @param string $token
+     *
+     * @return ResourceRequest self
+     */
+
+    public function setToken($token)
+    {
+        $this->token = (string) $token;
+
+        return $this;
+    }
+
+    /**
+     * Return the authentication token
+     *
+     * @return string
+     */
+
+    public function getToken()
+    {
+        return $this->token;
     }
 }

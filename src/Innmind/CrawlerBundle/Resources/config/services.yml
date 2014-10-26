@@ -22,3 +22,17 @@ services:
 
     normalizer:
         class: Innmind\CrawlerBundle\Normalization\Normalizer
+
+    publisher:
+        class: Innmind\CrawlerBundle\Publisher
+        calls:
+            - ['setNormalizer', ['@normalizer']]
+            - ['setLogger', ['@logger']]
+            - ['setHost', ['%router.request_context.host%']]
+
+    listener.resource_crawled:
+        class: Innmind\CrawlerBundle\Listener\ResourceCrawledListener
+        calls:
+            - ['setPublisher', ['@publisher']]
+        tags:
+            - { name: kernel.event_listener, event: resource.processed, method: handle }
