@@ -91,3 +91,8 @@ services:
         class: Innmind\CrawlerBundle\Parser\DescriptionPass
         tags:
             - { name: kernel.event_listener, event: resource.crawled, method: handle }
+
+    parser.android_pass:
+        class: Innmind\CrawlerBundle\Parser\AndroidPass
+        tags:
+            - { name: kernel.event_listener, event: resource.crawled, method: handle }
