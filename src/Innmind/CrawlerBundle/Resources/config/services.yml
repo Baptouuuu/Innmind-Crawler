@@ -101,3 +101,8 @@ services:
         class: Innmind\CrawlerBundle\Parser\IosPass
         tags:
             - { name: kernel.event_listener, event: resource.crawled, method: handle }
+
+    parser.journal_pass:
+        class: Innmind\CrawlerBundle\Parser\JournalPass
+        tags:
+            - { name: kernel.event_listener, event: resource.crawled, method: handle }
