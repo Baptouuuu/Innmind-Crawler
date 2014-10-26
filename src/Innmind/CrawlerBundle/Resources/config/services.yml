@@ -39,6 +39,8 @@ services:
 
     parser.alternates_pass:
         class: Innmind\CrawlerBundle\Parser\AlternatesPass
+        calls:
+            - ['setUriResolver', ['@uri_resolver']]
         tags:
             - { name: kernel.event_listener, event: resource.crawled, method: handle }
 

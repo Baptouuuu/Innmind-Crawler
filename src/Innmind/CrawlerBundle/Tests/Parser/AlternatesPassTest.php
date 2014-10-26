@@ -6,8 +6,10 @@ use Innmind\CrawlerBundle\Parser\AlternatesPass;
 use Innmind\CrawlerBundle\Entity\Resource;
 use Innmind\CrawlerBundle\Entity\HtmlPage;
 use Innmind\CrawlerBundle\Event\ResourceEvent;
+use Innmind\CrawlerBundle\UriResolver;
 use GuzzleHttp\Message\Response;
 use Symfony\Component\DomCrawler\Crawler;
+use Symfony\Component\Validator\Validation;
 
 class AlternatesPassTest extends \PHPUnit_Framework_TestCase
 {
@@ -15,7 +17,10 @@ class AlternatesPassTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->pass = new AlternatesPass();
+        $this->pass = new AlternatesPass;
+        $resolver = new UriResolver;
+        $resolver->setValidator(Validation::createValidator());
+        $this->pass->setUriResolver($resolver);
     }
 
     public function testDoesNotHandleIfNotHtmlPage()
@@ -39,11 +44,19 @@ class AlternatesPassTest extends \PHPUnit_Framework_TestCase
                     <link rel="alternate" href="/fr" hreflang="fr">
                 </head>
             </html>');
-        $event = new ResourceEvent(new HtmlPage, new Response(200), $dom);
+        $resource = new HtmlPage;
+        $resource
+            ->setScheme('http')
+            ->setHost('innmind.io');
+        $event = new ResourceEvent($resource, new Response(200), $dom);
 
         $this->pass->handle($event);
 
         $this->assertEquals($event->getResource()->getAlternates()->count(), 1);
         $this->assertTrue($event->getResource()->getAlternates()->containsKey('fr'));
+        $this->assertEquals(
+            $event->getResource()->getAlternates()->get('fr'),
+            'http://innmind.io/fr'
+        );
     }
 }

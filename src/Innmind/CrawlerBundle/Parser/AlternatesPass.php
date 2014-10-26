@@ -4,12 +4,26 @@ namespace Innmind\CrawlerBundle\Parser;
 
 use Innmind\CrawlerBundle\Event\ResourceEvent;
 use Innmind\CrawlerBundle\Entity\HtmlPage;
+use Innmind\CrawlerBundle\UriResolver;
 
 /**
  * Retrieve translations for current resource
  */
 class AlternatesPass
 {
+    protected $resolver;
+
+    /**
+     * Set the uri resolver
+     *
+     * @param UriResolver $resolver
+     */
+
+    public function setUriResolver(UriResolver $resolver)
+    {
+        $this->resolver = $resolver;
+    }
+
     public function handle(ResourceEvent $event)
     {
         $resource = $event->getResource();
@@ -25,7 +39,10 @@ class AlternatesPass
             $alternates->each(function ($node) use ($resource) {
                 $resource->addAlternate(
                     $node->attr('hreflang'),
-                    $node->attr('href')
+                    $this->resolver->resolve(
+                        $node->attr('href'),
+                        $resource
+                    )
                 );
             });
         }
