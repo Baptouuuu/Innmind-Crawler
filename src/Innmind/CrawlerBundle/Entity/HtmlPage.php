@@ -18,6 +18,8 @@ class HtmlPage extends Resource
     protected $language;
     protected $rss;
     protected $charset;
+    protected $androidURI;
+    protected $iosURI;
 
     public function __construct()
     {
@@ -179,5 +181,39 @@ class HtmlPage extends Resource
     public function getCharset()
     {
         return $this->charset;
+    }
+
+    public function setAndroidURI($uri)
+    {
+        $this->androidURI = (string) $uri;
+
+        return $this;
+    }
+
+    public function hasAndroidURI()
+    {
+        return (bool) $this->androidURI;
+    }
+
+    public function getAndroidURI()
+    {
+        return $this->androidURI;
+    }
+
+    public function setIosURI($uri)
+    {
+        $this->iosURI = (string) $uri;
+
+        return $this;
+    }
+
+    public function hasIosURI()
+    {
+        return (bool) $this->iosURI;
+    }
+
+    public function getIosURI()
+    {
+        return $this->iosURI;
     }
 }

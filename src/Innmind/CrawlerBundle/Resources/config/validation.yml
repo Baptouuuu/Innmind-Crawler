@@ -14,3 +14,6 @@ Innmind\CrawlerBundle\Entity\HtmlPage:
             - Url: ~
         charset:
             - Regex: '/[a-zA-Z\-\d]+/'
+        androidURI:
+            - Url:
+                protocols: ['android-app']
