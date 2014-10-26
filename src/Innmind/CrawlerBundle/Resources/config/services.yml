@@ -15,6 +15,11 @@ services:
         factory_class: Innmind\CrawlerBundle\DomainParserFactory
         factory_method: make
 
+    uri_resolver:
+        class: Innmind\CrawlerBundle\UriResolver
+        calls:
+            - ['setValidator', ['@validator']]
+
     parser.title_pass:
         class: Innmind\CrawlerBundle\Parser\TitlePass
         tags:
