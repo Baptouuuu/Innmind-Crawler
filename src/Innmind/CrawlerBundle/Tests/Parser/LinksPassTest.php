@@ -6,6 +6,7 @@ use Innmind\CrawlerBundle\Parser\LinksPass;
 use Innmind\CrawlerBundle\Entity\Resource;
 use Innmind\CrawlerBundle\Entity\HtmlPage;
 use Innmind\CrawlerBundle\Event\ResourceEvent;
+use Innmind\CrawlerBundle\UriResolver;
 use GuzzleHttp\Message\Response;
 use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\Validator\Validation;
@@ -16,8 +17,10 @@ class LinksPassTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->pass = new LinksPass();
-        $this->pass->setValidator(Validation::createValidator());
+        $this->pass = new LinksPass;
+        $resolver = new UriResolver;
+        $resolver->setValidator(Validation::createValidator());
+        $this->pass->setUriResolver($resolver);
     }
 
     public function testDoesNotHandleIfNotHtmlPage()

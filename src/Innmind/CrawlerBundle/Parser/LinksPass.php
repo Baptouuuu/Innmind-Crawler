@@ -4,20 +4,24 @@ namespace Innmind\CrawlerBundle\Parser;
 
 use Innmind\CrawlerBundle\Event\ResourceEvent;
 use Innmind\CrawlerBundle\Entity\HtmlPage;
-use Symfony\Component\Validator\ValidatorInterface;
-use Symfony\Component\Validator\Constraints\Regex;
-use Symfony\Component\Validator\Constraints\Url;
+use Innmind\CrawlerBundle\UriResolver;
 
 /**
  * Retrieve links to external resources
  */
 class LinksPass
 {
-    protected $validator;
+    protected $resolver;
 
-    public function setValidator(ValidatorInterface $validator)
+    /**
+     * Set the uri resolver
+     *
+     * @param UriResolver $resolver
+     */
+
+    public function setUriResolver(UriResolver $resolver)
     {
-        $this->validator = $validator;
+        $this->resolver = $resolver;
     }
 
     public function handle(ResourceEvent $event)
@@ -39,38 +43,13 @@ class LinksPass
             ')
             ->each(function ($node) use ($resource) {
                 $href = $node->attr('href');
-                $fragmentConstraint = new Regex(['pattern' => '/^#.*$/']);
-                $pathConstraint = new Regex(['pattern' => '/^\/.*$/']);
 
-                if ($this->validator->validate($href, $fragmentConstraint)->count() === 0) {
-                    $link = $resource->getScheme() . '://' . $resource->getHost();
-                    $link .= !$resource->hasOptionalPort() ? ':' . (string) $resource->getPort() : '';
-                    $link .= $resource->getPath() . '?' . $resource->getQuery();
-                    $link .= $href;
-                } else if ($this->validator->validate($href, $pathConstraint)->count() === 0) {
-                    $link = $resource->getScheme() . '://' . $resource->getHost();
-                    $link .= !$resource->hasOptionalPort() ? ':' . (string) $resource->getPort() : '';
-                    $link .= $href;
-                } else if (
-                    $this->validator->validate($href, new Url())->count() > 0 &&
-                    substr($href, 0, 1) !== '/'
-                ) {
-                    $link = $resource->getScheme() . '://' . $resource->getHost();
-                    $link .= !$resource->hasOptionalPort() ? ':' . (string) $resource->getPort() : '';
-
-                    if (substr($link, -1) === '/') {
-                        $link .= $resource->getPath() . $href;
-                    } else {
-                        $parts = explode('/', $resource->getPath());
-                        array_pop($parts);
-                        $parts[] = $href;
-                        $link .= implode('/', $parts);
-                    }
-                } else {
-                    $link = $href;
-                }
-
-                $resource->addLink($link);
+                $resource->addLink(
+                    $this->resolver->resolve(
+                        $href,
+                        $resource
+                    )
+                );
             });
     }
 }
