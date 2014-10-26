@@ -1,0 +1,10 @@
+services:
+    normalization_pass.resource:
+        class: Innmind\CrawlerBundle\Normalization\Pass\ResourcePass
+        tags:
+            - { name: innmind_crawler.normalization_pass }
+
+    normalization_pass.html:
+        class: Innmind\CrawlerBundle\Normalization\Pass\HtmlPass
+        tags:
+            - { name: innmind_crawler.normalization_pass }

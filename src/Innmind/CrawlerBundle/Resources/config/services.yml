@@ -20,6 +20,9 @@ services:
         calls:
             - ['setValidator', ['@validator']]
 
+    normalizer:
+        class: Innmind\CrawlerBundle\Normalization\Normalizer
+
     parser.title_pass:
         class: Innmind\CrawlerBundle\Parser\TitlePass
         tags:
