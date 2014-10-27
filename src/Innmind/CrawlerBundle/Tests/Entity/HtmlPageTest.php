@@ -3,7 +3,6 @@
 namespace Innmind\CrawlerBundle\Tests\Entity;
 
 use Innmind\CrawlerBundle\Entity\HtmlPage;
-use Doctrine\Common\Collections\ArrayCollection;
 
 class HtmlPageTest extends \PHPUnit_Framework_TestCase
 {
