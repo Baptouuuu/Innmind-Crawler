@@ -47,7 +47,7 @@ class LinksPass
                 link[rel="previous"][href],
                 link[rel="last"][href]
             ')
-            ->each(function ($node) use ($resource) {
+            ->each(function (Crawler $node) use ($resource) {
                 $href = $node->attr('href');
 
                 $resource->addLink(

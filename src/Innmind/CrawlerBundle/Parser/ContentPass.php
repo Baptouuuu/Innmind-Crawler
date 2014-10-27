@@ -109,7 +109,7 @@ class ContentPass
             $this->deepestChildren[$dom->getNode(0)->getNodePath()] = $dom;
         }
 
-        $children->each(function ($child) use ($dom, $level) {
+        $children->each(function (Crawler $child) use ($dom, $level) {
             $path = $child->getNode(0)->getNodePath();
 
             $percent = (100 * str_word_count($child->text())) / $this->totalWords;
@@ -194,7 +194,7 @@ class ContentPass
 
         $dom
             ->children()
-            ->each(function ($child) use (&$bestElement, $path) {
+            ->each(function (Crawler $child) use (&$bestElement, $path) {
                 if ($child->getNode(0)->getNodePath() === $path) {
                     $bestElement = $child;
                 } else if ($bestElement === null) {

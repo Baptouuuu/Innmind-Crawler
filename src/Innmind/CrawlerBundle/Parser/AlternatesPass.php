@@ -42,7 +42,7 @@ class AlternatesPass
         $alternates = $dom->filter('link[rel="alternate"][href][hreflang]');
 
         if ($alternates->count() > 0) {
-            $alternates->each(function ($node) use ($resource) {
+            $alternates->each(function (Crawler $node) use ($resource) {
                 $resource->addAlternate(
                     $node->attr('hreflang'),
                     $this->resolver->resolve(
