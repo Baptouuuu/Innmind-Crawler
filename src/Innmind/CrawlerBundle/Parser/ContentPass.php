@@ -109,7 +109,7 @@ class ContentPass
             $this->deepestChildren[$dom->getNode(0)->getNodePath()] = $dom;
         }
 
-        $children->each(function (Crawler $child) use ($dom, $level) {
+        $children->each(function (Crawler $child) use ($level) {
             $path = $child->getNode(0)->getNodePath();
 
             $percent = (100 * str_word_count($child->text())) / $this->totalWords;
