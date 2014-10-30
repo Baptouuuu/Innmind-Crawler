@@ -48,4 +48,14 @@ class ResourceRequestTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($r, $r->setToken('foo'));
         $this->assertEquals('foo', $r->getToken());
     }
+
+    public function testSetUUID()
+    {
+        $r = new ResourceRequest;
+
+        $this->assertFalse($r->hasUUID());
+        $this->assertEquals($r, $r->setUUID('uuid'));
+        $this->assertTrue($r->hasUUID());
+        $this->assertEquals('uuid', $r->getUUID());
+    }
 }

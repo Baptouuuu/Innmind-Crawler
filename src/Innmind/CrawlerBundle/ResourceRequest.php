@@ -39,6 +39,14 @@ class ResourceRequest
 
     protected $token;
 
+    /**
+     * The resource uuid
+     * if set, it means the resource has already been crawled before
+     * @var string
+     */
+
+    protected $uuid;
+
     public function __construct()
     {
         $this->headers = new ArrayCollection();
@@ -164,5 +172,42 @@ class ResourceRequest
     public function getToken()
     {
         return $this->token;
+    }
+
+    /**
+     * Set the resource uuid
+     *
+     * @param string $uuid
+     *
+     * @return ResourceRequest self
+     */
+
+    public function setUUID($uuid)
+    {
+        $this->uuid = (string) $uuid;
+
+        return $this;
+    }
+
+    /**
+     * Check if the resource has a uuid
+     *
+     * @return bool
+     */
+
+    public function hasUUID()
+    {
+        return (bool) $this->uuid;
+    }
+
+    /**
+     * Return the resource uuid
+     *
+     * @return string
+     */
+
+    public function getUUID()
+    {
+        return $this->uuid;
     }
 }
