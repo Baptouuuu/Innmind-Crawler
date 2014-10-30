@@ -10,6 +10,7 @@ use Psr\Log\LoggerInterface;
 use RuntimeException;
 use Innmind\CrawlerBundle\Event\ResourceEvent;
 use Innmind\CrawlerBundle\Event\ResourceEvents;
+use Symfony\Component\Stopwatch\Stopwatch;
 
 /**
  * Retrieve a resource and tell the app to process it
@@ -22,6 +23,7 @@ class Crawler
     protected $factory;
     protected $validator;
     protected $logger;
+    protected $stopwatch;
 
     public function __construct()
     {
@@ -73,6 +75,17 @@ class Crawler
     }
 
     /**
+     * Set the stopwatch
+     *
+     * @param Stopwatch $stopwatch
+     */
+
+    public function setStopwatch(Stopwatch $stopwatch)
+    {
+        $this->stopwatch = $stopwatch;
+    }
+
+    /**
      * Crawl the requested URI and tell the app to process it
      *
      * @param ResourceRequest $request
@@ -93,8 +106,15 @@ class Crawler
 
         $req->addHeader('User-Agent', 'Innmind Crawler');
 
+        $this->stopwatch->start('crawl');
         $response = $this->client->send($req);
-        $this->logger->info('Resoure crawled', ['uri' => $request->getURI()]);
+        $crawlEvent = $this->stopwatch->stop('crawl');
+
+        $this->logger->info('Resoure crawled', [
+            'uri' => $request->getURI(),
+            'duration' => $crawlEvent->getDuration(),
+            'memory' => $crawlEvent->getMemory()
+        ]);
 
         $dom = new DomCrawler();
         $dom->addContent((string) $response->getBody());
@@ -104,15 +124,21 @@ class Crawler
         $resource->setURI($request->getURI());
         $resource->setStatusCode($response->getStatusCode());
 
+        $this->stopwatch->start('parsing');
+
         $event = new ResourceEvent($resource, $response, $dom);
         $this->dispatcher->dispatch(
             ResourceEvents::CRAWLED,
             $event
         );
 
+        $parsingEvent = $this->stopwatch->stop('parsing');
+
         $this->logger->info('Resource processed', [
             'uri' => $request->getURI(),
-            'statusCode' => $resource->getStatusCode()
+            'statusCode' => $resource->getStatusCode(),
+            'duration' => $parsingEvent->getDuration(),
+            'memory' => $parsingEvent->getMemory()
         ]);
         $errors = $this->validator->validate($resource);
 
@@ -126,11 +152,20 @@ class Crawler
 
         $event->setResourceRequest($request);
 
+        $this->stopwatch->start('sending');
+
         $this->dispatcher->dispatch(
             ResourceEvents::PROCESSED,
             $event
         );
-        $this->logger->info('Resource fully processed', ['uri' => $request->getURI()]);
+
+        $sendingEvent = $this->stopwatch->stop('sending');
+
+        $this->logger->info('Resource fully processed', [
+            'uri' => $request->getURI(),
+            'duration' => $sendingEvent->getDuration(),
+            'memory' => $sendingEvent->getMemory()
+        ]);
 
         return $resource;
     }

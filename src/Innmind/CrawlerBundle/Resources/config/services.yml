@@ -6,6 +6,7 @@ services:
             - ['setResourceFactory', ['@resource_factory']]
             - ['setValidator', ['@validator']]
             - ['setLogger', ['@logger']]
+            - ['setStopwatch', ['@stopwatch']]
 
     resource_factory:
         class: Innmind\CrawlerBundle\ResourceFactory
@@ -36,3 +37,6 @@ services:
             - ['setPublisher', ['@publisher']]
         tags:
             - { name: kernel.event_listener, event: resource.processed, method: handle }
+
+    stopwatch:
+        class: Symfony\Component\Stopwatch\Stopwatch
