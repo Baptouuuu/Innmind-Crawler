@@ -95,18 +95,7 @@ EOF
         $this->assertEquals(
             $event->getResource()->getContent(),
 <<<EOF
-This project is an attempt to build a search engine that helps you discover new things.
-    The prime goal is to offer results based on your search, but instead of redirecting you
-    to the website, Innmind will also propose content related to the one you're about to reach.
-
-
-    One of the use cases could be if you heard of a subject (say ancient Egypt) and want to discover
-    the culture, but you don't who where to start. Here, you would just type "ancient Egypt" and
-    it would propose results (like any search engine), plus other pages related to the results
-    but not necessarily related to your search per se.
-
-
-    This project is fully open-sourced on Github.
+This project is an attempt to build a search engine that helps you discover new things. The prime goal is to offer results based on your search, but instead of redirecting you to the website, Innmind will also propose content related to the one you're about to reach. One of the use cases could be if you heard of a subject (say ancient Egypt) and want to discover the culture, but you don't who where to start. Here, you would just type "ancient Egypt" and it would propose results (like any search engine), plus other pages related to the results but not necessarily related to your search per se. This project is fully open-sourced on Github.
 EOF
 );
     }
@@ -176,9 +165,7 @@ EOF
         $this->assertEquals(
             $event->getResource()->getContent(),
 <<<EOF
-This project is an attempt to build a search engine that helps you discover new things.
-    The prime goal is to offer results based on your search, but instead of redirecting you
-    to the website, Innmind will also propose content related to the one you're about to reach.
+This project is an attempt to build a search engine that helps you discover new things. The prime goal is to offer results based on your search, but instead of redirecting you to the website, Innmind will also propose content related to the one you're about to reach.
 EOF
 );
     }
@@ -248,9 +235,7 @@ EOF
         $this->assertEquals(
             $event->getResource()->getContent(),
 <<<EOF
-This project is an attempt to build a search engine that helps you discover new things.
-    The prime goal is to offer results based on your search, but instead of redirecting you
-    to the website, Innmind will also propose content related to the one you're about to reach.
+This project is an attempt to build a search engine that helps you discover new things. The prime goal is to offer results based on your search, but instead of redirecting you to the website, Innmind will also propose content related to the one you're about to reach.
 EOF
 );
     }
@@ -320,10 +305,7 @@ EOF
         $this->assertEquals(
             $event->getResource()->getContent(),
 <<<EOF
-One of the use cases could be if you heard of a subject (say ancient Egypt) and want to discover
-    the culture, but you don't who where to start. Here, you would just type "ancient Egypt" and
-    it would propose results (like any search engine), plus other pages related to the results
-    but not necessarily related to your search per se.
+One of the use cases could be if you heard of a subject (say ancient Egypt) and want to discover the culture, but you don't who where to start. Here, you would just type "ancient Egypt" and it would propose results (like any search engine), plus other pages related to the results but not necessarily related to your search per se.
 EOF
 );
     }

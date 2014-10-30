@@ -317,6 +317,7 @@ class HtmlPage extends Resource
 
     public function setContent($content)
     {
+        $content = preg_replace('/\s{2,}/', ' ', $content);
         $this->content = trim($content);
 
         return $this;
