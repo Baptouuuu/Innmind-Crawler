@@ -49,6 +49,13 @@ class CrawlCommand extends ContainerAwareCommand
                 InputOption::VALUE_OPTIONAL,
                 'Token to authentify the resource (required when publisher is set)',
                 null
+            )
+            ->addOption(
+                'uuid',
+                'u',
+                InputOption::VALUE_OPTIONAL,
+                'Resource uuid in case the resource is already in the graph',
+                null
             );
     }
 
@@ -74,6 +81,10 @@ class CrawlCommand extends ContainerAwareCommand
             $request
                 ->setPublisherURI($input->getOption('publisher'))
                 ->setToken($input->getOption('token'));
+        }
+
+        if ($input->getOption('uuid')) {
+            $request->setUUID($input->getUUID());
         }
 
         $resource = $crawler->crawl($request);
