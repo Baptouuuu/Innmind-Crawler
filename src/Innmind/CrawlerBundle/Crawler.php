@@ -124,13 +124,7 @@ class Crawler
             throw new RuntimeException('Invalid resource');
         }
 
-        $event
-            ->setPublisherURI(
-                $request->getPublisherURI()
-            )
-            ->setToken(
-                $request->getToken()
-            );
+        $event->setResourceRequest($request);
 
         $this->dispatcher->dispatch(
             ResourceEvents::PROCESSED,

@@ -3,6 +3,7 @@
 namespace Innmind\CrawlerBundle;
 
 use Innmind\CrawlerBundle\Entity\Resource;
+use Innmind\CrawlerBundle\ResourceRequest;
 use Innmind\CrawlerBundle\Normalization\Normalizer;
 use GuzzleHttp\Client;
 use Psr\Log\LoggerInterface;
@@ -91,11 +92,10 @@ class Publisher
      * Publish the specified resource
      *
      * @param Resource $resource
-     * @param string $uri URI where to send the resource
-     * @param string $token Authentication token
+     * @param ResourceRequest $request
      */
 
-    public function publish(Resource $resource, $uri, $token)
+    public function publish(Resource $resource, ResourceRequest $request)
     {
         $data = $this->normalizer->normalize($resource);
 
@@ -106,15 +106,21 @@ class Publisher
 
         try {
 
-            $response = $this->client->post($uri, [
+            $body = [
                 'headers' => [
                     'Host' => $this->host,
-                    'X-Token' => $token,
+                    'X-Token' => $request->getToken(),
                     'X-Resource' => $resource->getURI()
                 ],
                 'body' => $data,
                 'timeout' => 42
-            ]);
+            ];
+
+            if ($request->hasUUID()) {
+                $response = $this->client->put($request->getPublisherURI(), $body);
+            } else {
+                $response = $this->client->post($request->getPublisherURI(), $body);
+            }
 
             $this->logger->info('Resource sent to publication server', [
                 'response_code' => $response->getStatusCode(),

@@ -33,11 +33,12 @@ class ResourceCrawledListener
 
     public function handle(ResourceEvent $event)
     {
-        if ($event->getPublisherURI()) {
+        $request = $event->getResourceRequest();
+
+        if ($request->hasPublisherURI()) {
             $this->publisher->publish(
                 $event->getResource(),
-                $event->getPublisherURI(),
-                $event->getToken()
+                $request
             );
         }
     }
