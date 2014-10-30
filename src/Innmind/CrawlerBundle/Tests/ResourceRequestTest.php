@@ -37,7 +37,9 @@ class ResourceRequestTest extends \PHPUnit_Framework_TestCase
     {
         $r = new ResourceRequest();
 
+        $this->assertFalse($r->hasPublisherURI());
         $this->assertEquals($r, $r->setPublisherURI('foo'));
+        $this->assertTrue($r->hasPublisherURI());
         $this->assertEquals('foo', $r->getPublisherURI());
     }
 

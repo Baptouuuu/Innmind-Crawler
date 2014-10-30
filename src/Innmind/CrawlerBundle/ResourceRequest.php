@@ -138,6 +138,17 @@ class ResourceRequest
     }
 
     /**
+     * Check if a publication uri is set
+     *
+     * @return bool
+     */
+
+    public function hasPublisherURI()
+    {
+        return (bool) $this->publisher;
+    }
+
+    /**
      * Return the URI where to publish the resource
      *
      * @return string
