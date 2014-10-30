@@ -4,6 +4,7 @@ namespace Innmind\CrawlerBundle\Tests\Event;
 
 use Innmind\CrawlerBundle\Event\ResourceEvent;
 use Innmind\CrawlerBundle\Entity\Resource;
+use Innmind\CrawlerBundle\ResourceRequest;
 use GuzzleHttp\Message\Response;
 use Symfony\Component\DomCrawler\Crawler;
 
@@ -66,19 +67,12 @@ class ResourceEventTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($e->getDOM(), $c);
     }
 
-    public function testGetPublisherURI()
+    public function testGetResourceRequest()
     {
+        $req = new ResourceRequest;
         $e = new ResourceEvent(new Resource, new Response(200), new Crawler);
-        $e->setPublisherURI('foo');
+        $e->setResourceRequest($req);
 
-        $this->assertEquals('foo', $e->getPublisherURI());
-    }
-
-    public function testGetToken()
-    {
-        $e = new ResourceEvent(new Resource, new Response(200), new Crawler);
-        $e->setToken('foo');
-
-        $this->assertEquals('foo', $e->getToken());
+        $this->assertEquals($req, $e->getResourceRequest());
     }
 }

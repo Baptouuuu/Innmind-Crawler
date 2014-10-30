@@ -6,6 +6,7 @@ use Symfony\Component\EventDispatcher\Event;
 use GuzzleHttp\Message\ResponseInterface;
 use Symfony\Component\DomCrawler\Crawler as DomCrawler;
 use Innmind\CrawlerBundle\Entity\Resource;
+use Innmind\CrawlerBundle\ResourceRequest;
 
 /**
  * Event dispatched when a resource has been crawled and then processed
@@ -16,8 +17,7 @@ class ResourceEvent extends Event
     protected $resource;
     protected $response;
     protected $dom;
-    protected $publisher;
-    protected $token;
+    protected $request;
 
     /**
      * Constructor
@@ -68,54 +68,28 @@ class ResourceEvent extends Event
     }
 
     /**
-     * Set the URI where to publish the processed resource
+     * Set the resource request
      *
-     * @param string $uri
+     * @param ResourceRequest $request
      *
      * @return ResourceEvent self
      */
 
-    public function setPublisherURI($uri)
+    public function setResourceRequest(ResourceRequest $request)
     {
-        $this->publisher = (string) $uri;
+        $this->request = $request;
 
         return $this;
     }
 
     /**
-     * Return the URI where to send processed resource
+     * Return the resource request
      *
-     * @return string
+     * @return ResourceRequest
      */
 
-    public function getPublisherURI()
+    public function getResourceRequest()
     {
-        return $this->publisher;
-    }
-
-    /**
-     * Set a token used to authentify the resource
-     *
-     * @param string $token
-     *
-     * @return ResourceEvent self
-     */
-
-    public function setToken($token)
-    {
-        $this->token = (string) $token;
-
-        return $this;
-    }
-
-    /**
-     * Return the authentication token
-     *
-     * @return string
-     */
-
-    public function getToken()
-    {
-        return $this->token;
+        return $this->request;
     }
 }
