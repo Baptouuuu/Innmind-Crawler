@@ -1,0 +1,1 @@
+0 0 * * * cd /var/www/innmind-crawler/app/logs && mv prod.log prod-$(date +"%y-%m-%d").log
