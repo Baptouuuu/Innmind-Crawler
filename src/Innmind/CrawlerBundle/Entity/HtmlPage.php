@@ -102,6 +102,13 @@ class HtmlPage extends Resource
     protected $iosURI;
 
     /**
+     * All the abbrviations found in a page
+     * @var ArrayCollection
+     */
+
+    protected $abbrs;
+
+    /**
      * Is the page indicating the website is a journal
      * (meaning a proper journal or any blog)
      * @var boolean
@@ -115,6 +122,7 @@ class HtmlPage extends Resource
 
         $this->alternates = new ArrayCollection();
         $this->links = new ArrayCollection();
+        $this->abbrs = new ArrayCollection();
     }
 
     /**
@@ -545,5 +553,32 @@ class HtmlPage extends Resource
     public function isJournal()
     {
         return $this->journal;
+    }
+
+    /**
+     * Add a new abbreviation
+     *
+     * @param string $abbr
+     * @param string $description
+     *
+     * @return HtmlPage self
+     */
+
+    public function addAbbreviation($abbr, $description)
+    {
+        $this->abbrs->set((string) $abbr, (string) $description);
+
+        return $this;
+    }
+
+    /**
+     * Return all the abbreviations
+     *
+     * @return ArrayCollection
+     */
+
+    public function getAbbreviations()
+    {
+        return $this->abbrs;
     }
 }

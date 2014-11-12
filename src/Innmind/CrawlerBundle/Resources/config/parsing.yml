@@ -85,3 +85,8 @@ services:
         class: Innmind\CrawlerBundle\Parser\JournalPass
         tags:
             - { name: kernel.event_listener, event: resource.crawled, method: handle }
+
+    parser.abbr_pass:
+        class: Innmind\CrawlerBundle\Parser\AbbreviationsPass
+        tags:
+            - { name: kernel.event_listener, event: resource.crawled, method: handle }

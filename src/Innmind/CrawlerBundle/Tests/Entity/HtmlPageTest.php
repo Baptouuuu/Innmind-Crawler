@@ -108,4 +108,13 @@ class HtmlPageTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($p->setCharset('UTF-8'), $p);
         $this->assertEquals($p->getCharset(), 'UTF-8');
     }
+
+    public function testSetAbbr()
+    {
+        $p = new HtmlPage;
+
+        $this->assertEquals(0, $p->getAbbreviations()->count());
+        $this->assertEquals($p, $p->addAbbreviation('aka', 'also known as'));
+        $this->assertEquals(1, $p->getAbbreviations()->count());
+    }
 }
