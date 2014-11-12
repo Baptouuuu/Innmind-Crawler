@@ -50,7 +50,7 @@ class HtmlPage extends Resource
      * @var string
      */
 
-    protected $title;
+    protected $title = '';
 
     /**
      * Document main content (like an a blog post)
