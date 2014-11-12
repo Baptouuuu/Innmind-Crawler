@@ -102,6 +102,13 @@ class HtmlPage extends Resource
     protected $iosURI;
 
     /**
+     * All the abbrviations found in a page
+     * @var ArrayCollection
+     */
+
+    protected $abbrs;
+
+    /**
      * Is the page indicating the website is a journal
      * (meaning a proper journal or any blog)
      * @var boolean
@@ -109,12 +116,38 @@ class HtmlPage extends Resource
 
     protected $journal = false;
 
+    /**
+     * Set the base url for relatives urls in the page
+     * @var string
+     */
+
+    protected $base;
+
+    /**
+     * All the citations of the page
+     *
+     * @see http://www.w3schools.com/tags/tag_cite.asp
+     * @var ArrayCollection
+     */
+
+    protected $citations;
+
+    /**
+     * Images of the page
+     * @var ArrayCollection
+     */
+
+    protected $images;
+
     public function __construct()
     {
         parent::__construct();
 
         $this->alternates = new ArrayCollection();
         $this->links = new ArrayCollection();
+        $this->abbrs = new ArrayCollection();
+        $this->citations = new ArrayCollection();
+        $this->images = new ArrayCollection();
     }
 
     /**
@@ -545,5 +578,124 @@ class HtmlPage extends Resource
     public function isJournal()
     {
         return $this->journal;
+    }
+
+    /**
+     * Add a new abbreviation
+     *
+     * @param string $abbr
+     * @param string $description
+     *
+     * @return HtmlPage self
+     */
+
+    public function addAbbreviation($abbr, $description)
+    {
+        $this->abbrs->set((string) $abbr, (string) $description);
+
+        return $this;
+    }
+
+    /**
+     * Return all the abbreviations
+     *
+     * @return ArrayCollection
+     */
+
+    public function getAbbreviations()
+    {
+        return $this->abbrs;
+    }
+
+    /**
+     * Set the base url
+     *
+     * @param string $url
+     *
+     * @return HtmlPage self
+     */
+
+    public function setBase($url)
+    {
+        $this->base = (string) $url;
+
+        return $this;
+    }
+
+    /**
+     * Check if the resource has a base url
+     *
+     * @return bool
+     */
+
+    public function hasBase()
+    {
+        return !empty($this->base);
+    }
+
+    /**
+     * Return the base url
+     *
+     * @return string
+     */
+
+    public function getBase()
+    {
+        return $this->base;
+    }
+
+    /**
+     * Add a citation
+     *
+     * @param string $cite
+     *
+     * @return HtmlPage self
+     */
+
+    public function addCite($cite)
+    {
+        $this->citations->add((string) $cite);
+
+        return $this;
+    }
+
+    /**
+     * Return all the citations
+     *
+     * @return ArrayCollection
+     */
+
+    public function getCitations()
+    {
+        return $this->citations;
+    }
+
+    /**
+     * Add a new image
+     *
+     * @param string $uri
+     * @param string $description
+     *
+     * @return HtmlPage self
+     */
+
+    public function addImage($uri, $description)
+    {
+        if (!$this->images->containsKey((string) $uri)) {
+            $this->images->set((string) $uri, (string) $description);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Return all the images
+     *
+     * @return ArrayCollection
+     */
+
+    public function getImages()
+    {
+        return $this->images;
     }
 }

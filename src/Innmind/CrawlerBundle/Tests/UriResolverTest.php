@@ -4,6 +4,7 @@ namespace Innmind\CrawlerBundle\Tests;
 
 use Innmind\CrawlerBundle\UriResolver;
 use Innmind\CrawlerBundle\Entity\Resource;
+use Innmind\CrawlerBundle\Entity\HtmlPage;
 use SYmfony\Component\Validator\Validation;
 
 class UriResolverTest extends \PHPUnit_Framework_TestCase
@@ -86,6 +87,20 @@ class UriResolverTest extends \PHPUnit_Framework_TestCase
             $this->resolver->resolve(
                 'foo',
                 $this->resource
+            )
+        );
+    }
+
+    public function testFromBaseUrl()
+    {
+        $r = new HtmlPage;
+        $r->setBase('http://innmind.io/foo/');
+
+        $this->assertEquals(
+            'http://innmind.io/foo/bar',
+            $this->resolver->resolve(
+                'bar',
+                $r
             )
         );
     }

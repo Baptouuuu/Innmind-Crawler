@@ -170,4 +170,68 @@ class HtmlPassTest extends \PHPUnit_Framework_TestCase
             $data->getArray()['ios']
         );
     }
+
+    public function testSetAbbreviations()
+    {
+        $page = new HtmlPage;
+        $data = new DataSet;
+
+        $page->addAbbreviation('aka', 'also known as');
+
+        $this->pass->normalize($page, $data);
+
+        $this->assertTrue(isset($data->getArray()['abbreviations']));
+        $this->assertEquals(
+            ['aka' => 'also known as'],
+            $data->getArray()['abbreviations']
+        );
+    }
+
+    public function testSetCitations()
+    {
+        $page = new HtmlPage;
+        $data = new DataSet;
+
+        $page->addCite('The Scream');
+
+        $this->pass->normalize($page, $data);
+
+        $this->assertTrue(isset($data->getArray()['citations']));
+        $this->assertEquals(
+            ['The Scream'],
+            $data->getArray()['citations']
+        );
+    }
+
+    public function testSetBase()
+    {
+        $page = new HtmlPage;
+        $data = new DataSet;
+
+        $page->setBase('http://innmind.io/');
+
+        $this->pass->normalize($page, $data);
+
+        $this->assertTrue(isset($data->getArray()['base']));
+        $this->assertEquals(
+            'http://innmind.io/',
+            $data->getArray()['base']
+        );
+    }
+
+    public function testSetImages()
+    {
+        $page = new HtmlPage;
+        $data = new DataSet;
+
+        $page->addImage('http://innmind.io/logo.png', 'Logo');
+
+        $this->pass->normalize($page, $data);
+
+        $this->assertTrue(isset($data->getArray()['images']));
+        $this->assertEquals(
+            ['http://innmind.io/logo.png' => 'Logo'],
+            $data->getArray()['images']
+        );
+    }
 }

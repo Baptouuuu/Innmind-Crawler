@@ -108,4 +108,42 @@ class HtmlPageTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($p->setCharset('UTF-8'), $p);
         $this->assertEquals($p->getCharset(), 'UTF-8');
     }
+
+    public function testSetAbbr()
+    {
+        $p = new HtmlPage;
+
+        $this->assertEquals(0, $p->getAbbreviations()->count());
+        $this->assertEquals($p, $p->addAbbreviation('aka', 'also known as'));
+        $this->assertEquals(1, $p->getAbbreviations()->count());
+    }
+
+    public function testSetBase()
+    {
+        $p = new HtmlPage;
+
+        $this->assertFalse($p->hasBase());
+        $this->assertEquals($p, $p->setBase('http://innmind.io/'));
+        $this->assertTrue($p->hasBase());
+        $this->assertEquals('http://innmind.io/', $p->getBase());
+    }
+
+    public function testSetCite()
+    {
+        $p = new HtmlPage;
+
+        $this->assertEquals(0, $p->getCitations()->count());
+        $this->assertEquals($p, $p->addCite('The Scream'));
+        $this->assertEquals(1, $p->getCitations()->count());
+    }
+
+    public function testAddImage()
+    {
+        $p = new HtmlPage;
+
+        $this->assertEquals(0, $p->getImages()->count());
+        $this->assertEquals($p, $p->addImage('http://innmind.io/logo.png', 'logo'));
+        $p->addImage('http://innmind.io/logo.png', 'logo bis');
+        $this->assertEquals(1, $p->getImages()->count());
+    }
 }

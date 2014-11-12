@@ -85,3 +85,25 @@ services:
         class: Innmind\CrawlerBundle\Parser\JournalPass
         tags:
             - { name: kernel.event_listener, event: resource.crawled, method: handle }
+
+    parser.abbr_pass:
+        class: Innmind\CrawlerBundle\Parser\AbbreviationsPass
+        tags:
+            - { name: kernel.event_listener, event: resource.crawled, method: handle }
+
+    parser.base_pass:
+        class: Innmind\CrawlerBundle\Parser\BasePass
+        tags:
+            - { name: kernel.event_listener, event: resource.crawled, method: handle, priority: 10 }
+
+    parser.cite_pass:
+        class: Innmind\CrawlerBundle\Parser\CitePass
+        tags:
+            - { name: kernel.event_listener, event: resource.crawled, method: handle }
+
+    parser.images_pass:
+        class: Innmind\CrawlerBundle\Parser\ImagesPass
+        calls:
+            - ['setUriResolver', ['@uri_resolver']]
+        tags:
+            - { name: kernel.event_listener, event: resource.crawled, method: handle }
