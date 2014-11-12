@@ -76,4 +76,20 @@ class ResourcePassTest extends \PHPUnit_Framework_TestCase
             $data->getArray()['fragment']
         );
     }
+
+    public function testSetContentType()
+    {
+        $resource = new Resource;
+        $data = new DataSet;
+
+        $resource->addHeader('Content-Type', 'text/plain');
+
+        $this->pass->normalize($resource, $data);
+
+        $this->assertTrue(isset($data->getArray()['content-type']));
+        $this->assertEquals(
+            'text/plain',
+            $data->getArray()['content-type']
+        );
+    }
 }

@@ -64,5 +64,23 @@ class HtmlPass implements NormalizationPassInterface
         }
 
         $dataset->set('journal', $resource->isJournal());
+
+        if ($resource->getAbbreviations()->count() > 0) {
+            $dataset->set(
+                'abbreviations',
+                $resource->getAbbreviations()->toArray()
+            );
+        }
+
+        if ($resource->getCitations()->count() > 0) {
+            $dataset->set(
+                'citations',
+                $resource->getCitations()->toArray()
+            );
+        }
+
+        if ($resource->hasBase()) {
+            $dataset->set('base', $resource->getBase());
+        }
     }
 }
