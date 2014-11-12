@@ -123,6 +123,15 @@ class HtmlPage extends Resource
 
     protected $base;
 
+    /**
+     * All the citations of the page
+     *
+     * @see http://www.w3schools.com/tags/tag_cite.asp
+     * @var ArrayCollection
+     */
+
+    protected $citations;
+
     public function __construct()
     {
         parent::__construct();
@@ -130,6 +139,7 @@ class HtmlPage extends Resource
         $this->alternates = new ArrayCollection();
         $this->links = new ArrayCollection();
         $this->abbrs = new ArrayCollection();
+        $this->citations = new ArrayCollection();
     }
 
     /**
@@ -624,5 +634,31 @@ class HtmlPage extends Resource
     public function getBase()
     {
         return $this->base;
+    }
+
+    /**
+     * Add a citation
+     *
+     * @param string $cite
+     *
+     * @return HtmlPage self
+     */
+
+    public function addCite($cite)
+    {
+        $this->citations->add((string) $cite);
+
+        return $this;
+    }
+
+    /**
+     * Return all the citations
+     *
+     * @return ArrayCollection
+     */
+
+    public function getCitations()
+    {
+        return $this->citations;
     }
 }

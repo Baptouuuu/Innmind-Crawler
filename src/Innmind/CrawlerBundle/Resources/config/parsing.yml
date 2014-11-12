@@ -95,3 +95,8 @@ services:
         class: Innmind\CrawlerBundle\Parser\BasePass
         tags:
             - { name: kernel.event_listener, event: resource.crawled, method: handle, priority: 10 }
+
+    parser.cite_pass:
+        class: Innmind\CrawlerBundle\Parser\CitePass
+        tags:
+            - { name: kernel.event_listener, event: resource.crawled, method: handle }

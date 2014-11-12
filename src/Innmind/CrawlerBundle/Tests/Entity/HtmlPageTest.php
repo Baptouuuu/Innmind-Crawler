@@ -127,4 +127,13 @@ class HtmlPageTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($p->hasBase());
         $this->assertEquals('http://innmind.io/', $p->getBase());
     }
+
+    public function testSetCite()
+    {
+        $p = new HtmlPage;
+
+        $this->assertEquals(0, $p->getCitations()->count());
+        $this->assertEquals($p, $p->addCite('The Scream'));
+        $this->assertEquals(1, $p->getCitations()->count());
+    }
 }
