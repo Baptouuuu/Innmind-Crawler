@@ -30,5 +30,9 @@ class ResourcePass implements NormalizationPassInterface
         if ($resource->hasFragment()) {
             $dataset->set('fragment', $resource->getFragment());
         }
+
+        if ($resource->hasHeader('Content-Type')) {
+            $dataset->set('content-type', $resource->getHeader('Content-Type'));
+        }
     }
 }
