@@ -136,4 +136,14 @@ class HtmlPageTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($p, $p->addCite('The Scream'));
         $this->assertEquals(1, $p->getCitations()->count());
     }
+
+    public function testAddImage()
+    {
+        $p = new HtmlPage;
+
+        $this->assertEquals(0, $p->getImages()->count());
+        $this->assertEquals($p, $p->addImage('http://innmind.io/logo.png', 'logo'));
+        $p->addImage('http://innmind.io/logo.png', 'logo bis');
+        $this->assertEquals(1, $p->getImages()->count());
+    }
 }

@@ -132,6 +132,13 @@ class HtmlPage extends Resource
 
     protected $citations;
 
+    /**
+     * Images of the page
+     * @var ArrayCollection
+     */
+
+    protected $images;
+
     public function __construct()
     {
         parent::__construct();
@@ -140,6 +147,7 @@ class HtmlPage extends Resource
         $this->links = new ArrayCollection();
         $this->abbrs = new ArrayCollection();
         $this->citations = new ArrayCollection();
+        $this->images = new ArrayCollection();
     }
 
     /**
@@ -660,5 +668,34 @@ class HtmlPage extends Resource
     public function getCitations()
     {
         return $this->citations;
+    }
+
+    /**
+     * Add a new image
+     *
+     * @param string $uri
+     * @param string $description
+     *
+     * @return HtmlPage self
+     */
+
+    public function addImage($uri, $description)
+    {
+        if (!$this->images->containsKey((string) $uri)) {
+            $this->images->set((string) $uri, (string) $description);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Return all the images
+     *
+     * @return ArrayCollection
+     */
+
+    public function getImages()
+    {
+        return $this->images;
     }
 }

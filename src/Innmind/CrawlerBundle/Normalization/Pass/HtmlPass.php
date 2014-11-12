@@ -82,5 +82,12 @@ class HtmlPass implements NormalizationPassInterface
         if ($resource->hasBase()) {
             $dataset->set('base', $resource->getBase());
         }
+
+        if ($resource->getImages()->count() > 0) {
+            $dataset->set(
+                'images',
+                $resource->getImages()->toArray()
+            );
+        }
     }
 }

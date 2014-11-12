@@ -100,3 +100,10 @@ services:
         class: Innmind\CrawlerBundle\Parser\CitePass
         tags:
             - { name: kernel.event_listener, event: resource.crawled, method: handle }
+
+    parser.images_pass:
+        class: Innmind\CrawlerBundle\Parser\ImagesPass
+        calls:
+            - ['setUriResolver', ['@uri_resolver']]
+        tags:
+            - { name: kernel.event_listener, event: resource.crawled, method: handle }

@@ -218,4 +218,20 @@ class HtmlPassTest extends \PHPUnit_Framework_TestCase
             $data->getArray()['base']
         );
     }
+
+    public function testSetImages()
+    {
+        $page = new HtmlPage;
+        $data = new DataSet;
+
+        $page->addImage('http://innmind.io/logo.png', 'Logo');
+
+        $this->pass->normalize($page, $data);
+
+        $this->assertTrue(isset($data->getArray()['images']));
+        $this->assertEquals(
+            ['http://innmind.io/logo.png' => 'Logo'],
+            $data->getArray()['images']
+        );
+    }
 }
