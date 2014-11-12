@@ -3,6 +3,7 @@
 namespace Innmind\CrawlerBundle;
 
 use Innmind\CrawlerBundle\Entity\Resource;
+use Innmind\CrawlerBundle\Entity\HtmlPage;
 use Symfony\Component\Validator\ValidatorInterface;
 use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\Validator\Constraints\Url;
@@ -40,6 +41,14 @@ class UriResolver
 
         if ($this->validator->validate($url, $constraint)->count() === 0) {
             return $url;
+        }
+
+        if ($resource instanceof HtmlPage && $resource->hasBase()) {
+            $fromBase = $resource->getBase().$url;
+
+            if ($this->validator->validate($fromBase, $constraint)->count() === 0) {
+                return $fromBase;
+            }
         }
 
         $constraint = new Regex(['pattern' => '/^\/.*$/']); //absolute path
