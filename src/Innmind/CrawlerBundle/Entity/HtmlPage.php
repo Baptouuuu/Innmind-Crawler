@@ -116,6 +116,13 @@ class HtmlPage extends Resource
 
     protected $journal = false;
 
+    /**
+     * Set the base url for relatives urls in the page
+     * @var string
+     */
+
+    protected $base;
+
     public function __construct()
     {
         parent::__construct();
@@ -580,5 +587,42 @@ class HtmlPage extends Resource
     public function getAbbreviations()
     {
         return $this->abbrs;
+    }
+
+    /**
+     * Set the base url
+     *
+     * @param string $url
+     *
+     * @return HtmlPage self
+     */
+
+    public function setBase($url)
+    {
+        $this->base = (string) $url;
+
+        return $this;
+    }
+
+    /**
+     * Check if the resource has a base url
+     *
+     * @return bool
+     */
+
+    public function hasBase()
+    {
+        return !empty($this->base);
+    }
+
+    /**
+     * Return the base url
+     *
+     * @return string
+     */
+
+    public function getBase()
+    {
+        return $this->base;
     }
 }

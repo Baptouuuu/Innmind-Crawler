@@ -20,3 +20,5 @@ Innmind\CrawlerBundle\Entity\HtmlPage:
         journal:
             - Type:
                 type: bool
+        base:
+            - Url: ~

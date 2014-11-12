@@ -90,3 +90,8 @@ services:
         class: Innmind\CrawlerBundle\Parser\AbbreviationsPass
         tags:
             - { name: kernel.event_listener, event: resource.crawled, method: handle }
+
+    parser.base_pass:
+        class: Innmind\CrawlerBundle\Parser\BasePass
+        tags:
+            - { name: kernel.event_listener, event: resource.crawled, method: handle, priority: 10 }

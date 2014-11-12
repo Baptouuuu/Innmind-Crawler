@@ -117,4 +117,14 @@ class HtmlPageTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($p, $p->addAbbreviation('aka', 'also known as'));
         $this->assertEquals(1, $p->getAbbreviations()->count());
     }
+
+    public function testSetBase()
+    {
+        $p = new HtmlPage;
+
+        $this->assertFalse($p->hasBase());
+        $this->assertEquals($p, $p->setBase('http://innmind.io/'));
+        $this->assertTrue($p->hasBase());
+        $this->assertEquals('http://innmind.io/', $p->getBase());
+    }
 }
