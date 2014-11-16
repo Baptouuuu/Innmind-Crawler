@@ -34,5 +34,13 @@ class ResourcePass implements NormalizationPassInterface
         if ($resource->hasHeader('Content-Type')) {
             $dataset->set('content-type', $resource->getHeader('Content-Type'));
         }
+
+        if ($resource->hasHeader('Last-Modified')) {
+            $date = new \DateTime($resource->getHeader('Last-Modified');
+            $dataset->set(
+                'last-modified',
+                $date->format(\DateTime::W3C)
+            );
+        }
     }
 }
