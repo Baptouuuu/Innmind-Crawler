@@ -77,6 +77,10 @@ class ContentPass
         $path = $this->resolveBestPath();
         $element = $this->resolveBestElement($body, $path);
 
+        if ($element === null) {
+            $element = $body;
+        }
+
         $resource->setContent($element->text());
     }
 
