@@ -111,7 +111,7 @@ class UriResolverTest extends \PHPUnit_Framework_TestCase
         $r->setBase('http://innmind.io/');
 
         $this->assertEquals(
-            '//innmind.io/',
+            'http://innmind.io/',
             $this->resolver->resolve(
                 '//innmind.io/',
                 $r

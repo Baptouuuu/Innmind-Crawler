@@ -44,7 +44,7 @@ class UriResolver
         }
 
         if (substr($url, 0, 2) === '//') {
-            return $url;
+            return 'http:'.$url;
         }
 
         if ($resource instanceof HtmlPage && $resource->hasBase()) {
