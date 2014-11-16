@@ -5,6 +5,7 @@ namespace Innmind\CrawlerBundle\Consumer;
 use OldSound\RabbitMqBundle\RabbitMq\ConsumerInterface;
 use PhpAmqpLib\Message\AMQPMessage;
 use Innmind\CrawlerBundle\ResourceRequest;
+use Innmind\CrawlerBundle\Crawler;
 use Psr\Log\LoggerInterface;
 
 class ResourceConsumer implements ConsumerInterface
