@@ -40,3 +40,9 @@ services:
 
     stopwatch:
         class: Symfony\Component\Stopwatch\Stopwatch
+
+    crawler.resource:
+        class: Innmind\CrawlerBundle\Consumer\ResourceConsumer
+        calls:
+            - ['setCrawler', ['@crawler']]
+            - ['setLogger', ['@logger']]

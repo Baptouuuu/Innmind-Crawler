@@ -72,3 +72,22 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+old_sound_rabbit_mq:
+    connections:
+        default:
+            host: %rabbitmq_host%
+            port: %rabbitmq_port%
+            user: %rabbitmq_user%
+            password: %rabbitmq_password%
+            vhost: /
+            lazy: true
+    consumers:
+        resource:
+            connection: default
+            exchange_options:
+                name: crawler.resource
+                type: direct
+            queue_options:
+                name: crawler.resource
+            callback: crawler.resource

@@ -20,3 +20,9 @@ parameters:
     secret:            ThisIsNotAVeryImportantTokenAsItsNeverUsed
 
     router.request_context.host: innmind.io
+
+
+    rabbitmq_host: localhost
+    rabbitmq_port: 5672
+    rabbitmq_user: guest
+    rabbitmq_password: guest
