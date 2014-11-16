@@ -187,7 +187,7 @@ class HtmlPage extends Resource
 
     public function setAuthor($author)
     {
-        $this->author = (string) $author;
+        $this->author = utf8_encode((string) $author);
 
         return $this;
     }
@@ -225,7 +225,7 @@ class HtmlPage extends Resource
     public function setDescription($desc)
     {
         $desc = str_replace("\n", '', $desc);
-        $this->description = (string) $desc;
+        $this->description = utf8_encode((string) $desc);
 
         return $this;
     }
@@ -324,7 +324,7 @@ class HtmlPage extends Resource
     public function setTitle($title)
     {
         $title = str_replace("\n", '', $title);
-        $this->title = trim((string) $title);
+        $this->title = utf8_encode(trim((string) $title));
 
         return $this;
     }
@@ -351,7 +351,7 @@ class HtmlPage extends Resource
     public function setContent($content)
     {
         $content = preg_replace('/\s{2,}/', ' ', $content);
-        $this->content = trim($content);
+        $this->content = utf8_encode(trim($content));
 
         return $this;
     }
@@ -591,7 +591,7 @@ class HtmlPage extends Resource
 
     public function addAbbreviation($abbr, $description)
     {
-        $this->abbrs->set((string) $abbr, (string) $description);
+        $this->abbrs->set((string) $abbr, utf8_encode((string) $description));
 
         return $this;
     }
@@ -654,7 +654,7 @@ class HtmlPage extends Resource
 
     public function addCite($cite)
     {
-        $this->citations->add((string) $cite);
+        $this->citations->add(utf8_encode((string) $cite));
 
         return $this;
     }
@@ -682,7 +682,7 @@ class HtmlPage extends Resource
     public function addImage($uri, $description)
     {
         if (!$this->images->containsKey((string) $uri)) {
-            $this->images->set((string) $uri, (string) $description);
+            $this->images->set((string) $uri, utf8_encode((string) $description));
         }
 
         return $this;
