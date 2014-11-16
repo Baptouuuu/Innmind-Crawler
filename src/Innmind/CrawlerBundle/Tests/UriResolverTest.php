@@ -104,4 +104,18 @@ class UriResolverTest extends \PHPUnit_Framework_TestCase
             )
         );
     }
+
+    public function testSchemeLessUrl()
+    {
+        $r = new HtmlPage;
+        $r->setBase('http://innmind.io/');
+
+        $this->assertEquals(
+            '//innmind.io/',
+            $this->resolver->resolve(
+                '//innmind.io/',
+                $r
+            )
+        );
+    }
 }
