@@ -45,7 +45,11 @@ class ImagePass
             }
         }
 
-        $exif = exif_read_data(urlencode($request->getURI()));
+        if ($resource->getMime() !== 'image/jpeg') {
+            return;
+        }
+
+        $exif = exif_read_data($request->getURI());
 
         if ($exif !== false) {
             foreach ($exif as $key => $section) {
