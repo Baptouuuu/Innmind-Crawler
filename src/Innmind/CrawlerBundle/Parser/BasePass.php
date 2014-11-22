@@ -4,8 +4,6 @@ namespace Innmind\CrawlerBundle\Parser;
 
 use Innmind\CrawlerBundle\Event\ResourceEvent;
 use Innmind\CrawlerBundle\Entity\HtmlPage;
-use Innmind\CrawlerBundle\UriResolver;
-use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Retrieve the base url if any set
