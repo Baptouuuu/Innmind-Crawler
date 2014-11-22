@@ -1,1 +1,2 @@
 0 0 * * * cd /var/www/innmind-crawler/app/logs && mv prod.log prod-$(date +"%y-%m-%d").log
+0 * * * * if [ -z "$(ps -e | grep 'console rabbitmq:consumer' | grep -v grep)" ]; then /var/www/innmind-crawler/app/console rabbitmq:consumer resource -m 50 --env=prod --process-isolation; fi
