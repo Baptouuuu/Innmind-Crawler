@@ -7,6 +7,7 @@ use PhpAmqpLib\Message\AMQPMessage;
 use Innmind\CrawlerBundle\ResourceRequest;
 use Innmind\CrawlerBundle\Crawler;
 use Psr\Log\LoggerInterface;
+use GuzzleHttp\Exception\ClientException;
 
 class ResourceConsumer implements ConsumerInterface
 {
