@@ -45,7 +45,7 @@ class ImagePass
             }
         }
 
-        $exif = @exif_read_data(urlencode($request->getURI()));
+        $exif = exif_read_data(urlencode($request->getURI()));
 
         if ($exif !== false) {
             foreach ($exif as $key => $section) {
