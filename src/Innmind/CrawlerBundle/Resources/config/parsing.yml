@@ -107,3 +107,8 @@ services:
             - ['setUriResolver', ['@uri_resolver']]
         tags:
             - { name: kernel.event_listener, event: resource.crawled, method: handle }
+
+    parser.image_pass:
+        class: Innmind\CrawlerBundle\Parser\ImagePass
+        tags:
+            - { name: kernel.event_listener, event: resource.crawled, method: handle }

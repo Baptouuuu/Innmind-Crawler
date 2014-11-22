@@ -8,3 +8,8 @@ services:
         class: Innmind\CrawlerBundle\Normalization\Pass\HtmlPass
         tags:
             - { name: innmind_crawler.normalization_pass }
+
+    normalization_pass.image:
+        class: Innmind\CrawlerBundle\Normalization\Pass\ImagePass
+        tags:
+            - { name: innmind_crawler.normalization_pass }

@@ -9,6 +9,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Innmind\CrawlerBundle\ResourceRequest;
 use Innmind\CrawlerBundle\Entity\HtmlPage;
+use Innmind\CrawlerBundle\Entity\Image;
 
 class CrawlCommand extends ContainerAwareCommand
 {
@@ -161,6 +162,29 @@ class CrawlCommand extends ContainerAwareCommand
                     ));
                     return true;
                 });
+        }
+
+        if ($resource instanceof Image) {
+            $output->writeln(sprintf(
+                'Height: <fg=cyan>%s</fg=cyan>',
+                $resource->getHeight()
+            ));
+            $output->writeln(sprintf(
+                'Width: <fg=cyan>%s</fg=cyan>',
+                $resource->getWidth()
+            ));
+            $output->writeln(sprintf(
+                'MIME: <fg=cyan>%s</fg=cyan>',
+                $resource->getMime()
+            ));
+            $output->writeln(sprintf(
+                'Extension: <fg=cyan>%s</fg=cyan>',
+                $resource->getExtension()
+            ));
+            $output->writeln(sprintf(
+                'Weight: <fg=cyan>%s</fg=cyan>',
+                $resource->getWeight()
+            ));
         }
     }
 }
