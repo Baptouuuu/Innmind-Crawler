@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e19c18c66f9f7df26d194067774f6f8c",
+    "hash": "3e3e40086dfd65e79d5bbb9cfb48208b",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1592,16 +1592,16 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "dev-master",
+            "version": "v2.6.0-BETA1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "96210c2e1fdee1c1d3eaa2db46634b861010c162"
+                "reference": "7bd1d4c0e68e9e2fd9e19c8e5671f71e82a4dc73"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/96210c2e1fdee1c1d3eaa2db46634b861010c162",
-                "reference": "96210c2e1fdee1c1d3eaa2db46634b861010c162",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/7bd1d4c0e68e9e2fd9e19c8e5671f71e82a4dc73",
+                "reference": "7bd1d4c0e68e9e2fd9e19c8e5671f71e82a4dc73",
                 "shasum": ""
             },
             "require": {
@@ -1704,7 +1704,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2014-10-26 07:50:57"
+            "time": "2014-11-03 20:15:26"
         },
         {
             "name": "twig/extensions",
@@ -1918,7 +1918,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "symfony/symfony": 20
+        "symfony/symfony": 10
     },
     "prefer-stable": false,
     "platform": {
