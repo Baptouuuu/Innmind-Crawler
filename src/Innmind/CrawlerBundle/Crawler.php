@@ -127,6 +127,7 @@ class Crawler
         $this->stopwatch->start('parsing');
 
         $event = new ResourceEvent($resource, $response, $dom);
+        $event->setResourceRequest($request);
         $this->dispatcher->dispatch(
             ResourceEvents::CRAWLED,
             $event
@@ -149,8 +150,6 @@ class Crawler
             ]);
             throw new RuntimeException('Invalid resource');
         }
-
-        $event->setResourceRequest($request);
 
         $this->stopwatch->start('sending');
 
