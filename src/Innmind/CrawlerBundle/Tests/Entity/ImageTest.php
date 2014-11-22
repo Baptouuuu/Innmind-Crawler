@@ -3,7 +3,6 @@
 namespace Innmind\CrawlerBundle\Tests\Entity;
 
 use Innmind\CrawlerBundle\Entity\Image;
-use Doctrine\Common\Collections\ArrayCollection;
 
 class ImageTest extends \PHPUnit_Framework_TestCase
 {
