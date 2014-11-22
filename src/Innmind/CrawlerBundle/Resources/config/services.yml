@@ -46,3 +46,12 @@ services:
         calls:
             - ['setCrawler', ['@crawler']]
             - ['setLogger', ['@logger']]
+
+    kernel.listener.command:
+        class: Innmind\CrawlerBundle\Listener\ConsoleListener
+        calls:
+            - ['setRootDir', ['%kernel.root_dir%']]
+            - ['setEnv', ['%kernel.environment%']]
+            - ['setLogger', ['@logger']]
+        tags:
+            - { name: kernel.event_listener, event: console.terminate }
