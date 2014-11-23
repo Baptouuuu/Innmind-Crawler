@@ -89,6 +89,34 @@ class UriResolverTest extends \PHPUnit_Framework_TestCase
                 $this->resource
             )
         );
+
+        $this->assertEquals(
+            'http://innmind.io:8080/home/foo',
+            $this->resolver->resolve(
+                './foo',
+                $this->resource
+            )
+        );
+
+        $this->resource->setPath('/home/foo');
+
+        $this->assertEquals(
+            'http://innmind.io:8080/home/foo',
+            $this->resolver->resolve(
+                '',
+                $this->resource
+            )
+        );
+
+        $this->resource->setPath('/home/');
+
+        $this->assertEquals(
+            'http://innmind.io:8080/home/',
+            $this->resolver->resolve(
+                '',
+                $this->resource
+            )
+        );
     }
 
     public function testFromBaseUrl()

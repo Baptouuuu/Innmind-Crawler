@@ -39,6 +39,10 @@ class UriResolver
     {
         $constraint = new Url;
 
+        if (empty($url)) {
+            $url = './';
+        }
+
         if ($this->validator->validate($url, $constraint)->count() === 0) {
             return $url;
         }
@@ -100,6 +104,10 @@ class UriResolver
             $this->validator->validate($url, $constraint)->count() > 0 &&
             substr($url, 0, 1) !== '/'
         ) {
+            if (substr($url, 0, 2) === './') {
+                $url = substr($url, 2);
+            }
+
             $uri = $resource->getScheme() . '://' . $resource->getHost();
             $uri .= !$resource->hasOptionalPort() ?
                 ':' . (string) $resource->getPort() :
@@ -107,7 +115,9 @@ class UriResolver
 
             $path = $resource->getPath();
 
-            if (substr($path, -1) === '/') {
+            if (empty($url)) {
+                $uri .= $path;
+            } else if (substr($path, -1) === '/') {
                 $uri .= $path . $url;
             } else {
                 $parts = explode('/', $path);
