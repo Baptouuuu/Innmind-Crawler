@@ -85,7 +85,7 @@ class CrawlCommand extends ContainerAwareCommand
         }
 
         if ($input->getOption('uuid')) {
-            $request->setUUID($input->getUUID());
+            $request->setUUID($input->getOption('uuid'));
         }
 
         $resource = $crawler->crawl($request);
