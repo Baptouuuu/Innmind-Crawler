@@ -51,7 +51,7 @@ class ConsoleListener
 
         if ($command->getName() === 'rabbitmq:consumer') {
             $process = new Process(sprintf(
-                'cd %s && ./console rabbitmq:consumer resource -m 50 -e %s',
+                'cd %s && ./console rabbitmq:consumer resource -m 50 --env=%s',
                 $this->rootDir,
                 $this->env
             ));
