@@ -230,7 +230,10 @@ class HtmlPassTest extends \PHPUnit_Framework_TestCase
 
         $this->assertTrue(isset($data->getArray()['images']));
         $this->assertEquals(
-            ['http://innmind.io/logo.png' => 'Logo'],
+            [[
+                'uri' => 'http://innmind.io/logo.png',
+                'description' => 'Logo'
+            ]],
             $data->getArray()['images']
         );
     }

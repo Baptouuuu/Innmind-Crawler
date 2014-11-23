@@ -66,9 +66,9 @@ class ImagesPassTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(3, $event->getResource()->getImages()->count());
         $this->assertEquals(
             [
-                'http://innmind.io/logo.png' => 'Logo',
-                'http://innmind.io/logo2.png' => 'Logo',
-                'http://innmind.io/logo3.png' => 'Logo 3',
+                ['uri' => 'http://innmind.io/logo.png', 'description' => 'Logo'],
+                ['uri' => 'http://innmind.io/logo2.png', 'description' => 'Logo'],
+                ['uri' => 'http://innmind.io/logo3.png', 'description' => 'Logo 3'],
             ],
             $event->getResource()->getImages()->toArray()
         );

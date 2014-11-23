@@ -138,6 +138,7 @@ class HtmlPage extends Resource
      */
 
     protected $images;
+    protected $imagesUris;
 
     public function __construct()
     {
@@ -148,6 +149,7 @@ class HtmlPage extends Resource
         $this->abbrs = new ArrayCollection();
         $this->citations = new ArrayCollection();
         $this->images = new ArrayCollection();
+        $this->imagesUris = new ArrayCollection();
     }
 
     /**
@@ -681,8 +683,12 @@ class HtmlPage extends Resource
 
     public function addImage($uri, $description)
     {
-        if (!$this->images->containsKey((string) $uri)) {
-            $this->images->set((string) $uri, utf8_encode((string) $description));
+        if (!$this->imagesUris->contains((string) $uri)) {
+            $this->images->add([
+                'uri' => (string) $uri,
+                'description' => utf8_encode((string) $description),
+            ]);
+            $this->imagesUris->add((string) $uri);
         }
 
         return $this;
