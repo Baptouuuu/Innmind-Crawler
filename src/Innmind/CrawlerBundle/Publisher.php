@@ -113,7 +113,6 @@ class Publisher
                     'X-Resource' => $resource->getURI()
                 ],
                 'body' => $data,
-                'timeout' => 42
             ];
 
             if ($request->hasUUID()) {
