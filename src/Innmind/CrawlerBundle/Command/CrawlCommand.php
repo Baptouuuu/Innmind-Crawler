@@ -185,6 +185,16 @@ class CrawlCommand extends ContainerAwareCommand
                 'Weight: <fg=cyan>%s</fg=cyan>',
                 $resource->getWeight()
             ));
+            $resource
+                ->getExif()
+                ->forAll(function ($key, $value) use ($output) {
+                    $output->writeln(sprintf(
+                        'Exif: <fg=cyan>%s=%s</fg=cyan>',
+                        $key,
+                        $value
+                    ));
+                    return true;
+                });
         }
     }
 }
