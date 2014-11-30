@@ -148,7 +148,8 @@ class Publisher
         } catch (\Exception $e) {
             $this->logger->error('Resource publication failed', [
                 'error_code' => $e->getCode(),
-                'error_message' => $e->getMessage()
+                'error_message' => $e->getMessage(),
+                'uri' => $request->getURI(),
             ]);
         }
     }
