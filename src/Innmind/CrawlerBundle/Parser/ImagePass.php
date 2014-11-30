@@ -53,8 +53,12 @@ class ImagePass
 
         if ($exif !== false) {
             foreach ($exif as $key => $section) {
-                foreach ($section as $name => $value) {
-                    $resource->addExif($section.'.'.$name, $value);
+                if (is_array($section)) {
+                    foreach ($section as $name => $value) {
+                        $resource->addExif($key.'.'.$name, $value);
+                    }
+                } else {
+                    $resource->addExif($key, $section);
                 }
             }
 
