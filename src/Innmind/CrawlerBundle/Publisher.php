@@ -50,6 +50,13 @@ class Publisher
 
     protected $encoder;
 
+    /**
+     * Accept header for publisher api
+     * @var string
+     */
+
+    protected $acceptHeader;
+
     public function __construct()
     {
         $this->client = new Client;
@@ -89,6 +96,17 @@ class Publisher
     }
 
     /**
+     * Set the Accept header
+     *
+     * @param string $accept
+     */
+
+    public function setAcceptHeader($accept)
+    {
+        $this->acceptHeader = (string) $accept;
+    }
+
+    /**
      * Publish the specified resource
      *
      * @param Resource $resource
@@ -110,7 +128,8 @@ class Publisher
                 'headers' => [
                     'Host' => $this->host,
                     'X-Token' => $request->getToken(),
-                    'X-Resource' => $resource->getURI()
+                    'X-Resource' => $resource->getURI(),
+                    'Accept' => $this->acceptHeader,
                 ],
                 'body' => $data,
             ];

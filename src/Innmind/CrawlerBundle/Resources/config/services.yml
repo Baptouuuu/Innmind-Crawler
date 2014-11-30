@@ -30,6 +30,7 @@ services:
             - ['setNormalizer', ['@normalizer']]
             - ['setLogger', ['@logger']]
             - ['setHost', ['%router.request_context.host%']]
+            - ['setAcceptHeader', ['%publisher.header.accept%']]
 
     listener.resource_crawled:
         class: Innmind\CrawlerBundle\Listener\ResourceCrawledListener
