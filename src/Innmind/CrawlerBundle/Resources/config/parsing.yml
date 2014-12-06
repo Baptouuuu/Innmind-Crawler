@@ -112,3 +112,8 @@ services:
         class: Innmind\CrawlerBundle\Parser\ImagePass
         tags:
             - { name: kernel.event_listener, event: resource.crawled, method: handle }
+
+    parser.theme_color_pass:
+        class: Innmind\CrawlerBundle\Parser\ThemeColorPass
+        tags:
+            - { name: kernel.event_listener, event: resource.crawled, method: handle }
