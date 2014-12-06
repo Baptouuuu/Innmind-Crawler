@@ -89,5 +89,16 @@ class HtmlPass implements NormalizationPassInterface
                 $resource->getImages()->toArray()
             );
         }
+
+        if ($resource->hasThemeColor()) {
+            $dataset->set(
+                'themeColor',
+                [
+                    'hue' => $resource->getThemeColorHue(),
+                    'saturation' => $resource->getThemeColorSaturation(),
+                    'lightness' => $resource->getThemeColorLightness(),
+                ]
+            );
+        }
     }
 }
