@@ -233,6 +233,10 @@ class Resource
     {
         $this->port = (int) $port;
 
+        if ($this->port === 0) {
+            $this->port = 80;
+        }
+
         return $this;
     }
 
@@ -270,7 +274,8 @@ class Resource
         if (
             ($this->scheme === 'http' && $this->port === 80) ||
             ($this->scheme === 'https' && $this->port === 443) ||
-            !$this->hasPort()
+            !$this->hasPort() ||
+            $this->port === 80
         ) {
             return true;
         }

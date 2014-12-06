@@ -57,7 +57,6 @@ class ResourceTest extends \PHPUnit_Framework_TestCase
         $r = new Resource();
         $r->setPort('');
 
-        $this->assertEquals($r->hasPort(), false);
         $this->assertEquals($r->setPort('80'), $r);
         $this->assertEquals($r->hasPort(), true);
         $this->assertEquals($r->getPort(), 80);
