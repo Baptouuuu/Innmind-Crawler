@@ -22,3 +22,15 @@ Innmind\CrawlerBundle\Entity\HtmlPage:
                 type: bool
         base:
             - Url: ~
+        themeColorHue:
+            - Range:
+                min: 0
+                max: 360
+        themeColorSaturation:
+            - Range:
+                min: 0
+                max: 100
+        themeColorLightness:
+            - Range:
+                min: 0
+                max: 100
