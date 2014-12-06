@@ -139,6 +139,14 @@ class CrawlCommand extends ContainerAwareCommand
                 'RSS: <fg=cyan>%s</fg=cyan>',
                 $resource->getRSS()
             ));
+            if ($resource->hasThemeColor()) {
+                $output->writeln(sprintf(
+                    'Theme color: <fg=cyan>hsl(%s, %s%%, %s%%)</fg=cyan>',
+                    $resource->getThemeColorHue(),
+                    $resource->getThemeColorSaturation(),
+                    $resource->getThemeColorLightness()
+                ));
+            }
             $resource
                 ->getAlternates()
                 ->forAll(function ($lang, $url) use ($output) {

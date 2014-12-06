@@ -140,6 +140,27 @@ class HtmlPage extends Resource
     protected $images;
     protected $imagesUris;
 
+    /**
+     * Theme color hue
+     * @var int
+     */
+
+    protected $themeColorHue;
+
+    /**
+     * Theme color saturation
+     * @var int
+     */
+
+    protected $themeColorSaturation;
+
+    /**
+     * Theme color lightness
+     * @var int
+     */
+
+    protected $themeColorLightness;
+
     public function __construct()
     {
         parent::__construct();
@@ -703,5 +724,70 @@ class HtmlPage extends Resource
     public function getImages()
     {
         return $this->images;
+    }
+
+    /**
+     * Set the theme color
+     *
+     * @param int $hue
+     * @param int $saturation
+     * @param int $lightness
+     *
+     * @return HtmlPage self
+     */
+
+    public function setThemeColor($hue, $saturation, $lightness)
+    {
+        $this->themeColorHue = (int) $hue;
+        $this->themeColorSaturation = (int) $saturation;
+        $this->themeColorLightness = (int) $lightness;
+
+        return $this;
+    }
+
+    /**
+     * Check if the page has a theme color
+     *
+     * @return bool
+     */
+
+    public function hasThemeColor()
+    {
+        return is_int($this->themeColorHue) &&
+            is_int($this->themeColorSaturation) &&
+            is_int($this->themeColorLightness);
+    }
+
+    /**
+     * Return theme color hue
+     *
+     * @return int
+     */
+
+    public function getThemeColorHue()
+    {
+        return $this->themeColorHue;
+    }
+
+    /**
+     * Return theme color saturation
+     *
+     * @return int
+     */
+
+    public function getThemeColorSaturation()
+    {
+        return $this->themeColorSaturation;
+    }
+
+    /**
+     * Return theme color lightness
+     *
+     * @return int
+     */
+
+    public function getThemeColorLightness()
+    {
+        return $this->themeColorLightness;
     }
 }

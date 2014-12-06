@@ -146,4 +146,16 @@ class HtmlPageTest extends \PHPUnit_Framework_TestCase
         $p->addImage('http://innmind.io/logo.png', 'logo bis');
         $this->assertEquals(1, $p->getImages()->count());
     }
+
+    public function testSetThemeColor()
+    {
+        $p = new HtmlPage;
+
+        $this->assertFalse($p->hasThemeColor());
+        $this->assertEquals($p, $p->setThemeColor('58', '100', '60'));
+        $this->assertTrue($p->hasThemeColor());
+        $this->assertEquals(58, $p->getThemeColorHue());
+        $this->assertEquals(100, $p->getThemeColorSaturation());
+        $this->assertEquals(60, $p->getThemeColorLightness());
+    }
 }
