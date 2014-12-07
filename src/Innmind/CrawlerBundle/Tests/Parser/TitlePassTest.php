@@ -51,4 +51,15 @@ class TitlePassTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($event->getResource()->getTitle(), 'Innmind');
     }
+
+    public function testSetTitleViaHeadIfEmptyH1()
+    {
+        $dom = new Crawler();
+        $dom->addContent('<html><head><title>Innmind</title></head><body><h1><img src="some/image.png"/></h1></body></html>');
+        $event = new ResourceEvent(new HtmlPage, new Response(200), $dom);
+
+        $this->pass->handle($event);
+
+        $this->assertEquals($event->getResource()->getTitle(), 'Innmind');
+    }
 }

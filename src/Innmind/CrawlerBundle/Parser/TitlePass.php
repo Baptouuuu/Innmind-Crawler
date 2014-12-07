@@ -28,7 +28,7 @@ class TitlePass
 
         $h1s = $dom->filter('h1');
 
-        if ($h1s->count() === 1) {
+        if ($h1s->count() === 1 && trim($h1s->text()) !== '') {
             $resource->setTitle($h1s->text());
         } else {
             $resource->setTitle(
