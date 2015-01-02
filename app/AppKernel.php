@@ -13,6 +13,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Innmind\CrawlerBundle\InnmindCrawlerBundle(),
             new OldSound\RabbitMqBundle\OldSoundRabbitMqBundle(),
+            new Innmind\ProvisionerBundle\InnmindProvisionerBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

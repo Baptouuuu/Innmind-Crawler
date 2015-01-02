@@ -41,3 +41,17 @@ old_sound_rabbit_mq:
             queue_options:
                 name: crawler.resource
             callback: crawler.resource
+
+innmind_provisioner:
+    threshold:
+        cpu:
+            max: 100
+            min: 10
+        load_average:
+            max: 25
+            min: 1
+    triggers:
+        - 'rabbitmq:consumer'
+    rabbitmq:
+        queue_depth:
+            history_length: 2
